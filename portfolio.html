@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Projetos — Carol Magno Arquitetura</title>
-  <meta name="description" content="Galerias de projetos da Carol Magno Arquitetura: edifícios, residenciais, comerciais e interiores.">
+  <meta name="description" content="Galerias de projetos da Carol Magno Arquitetura: edifícios, comerciais, interiores e sustentabilidade.">
   <script>document.documentElement.classList.add("js");</script>
   <link rel="icon" type="image/png" href="assets/carol/favicon-carol.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,7 +17,7 @@
     <div class="container nav__inner">
       <a href="./index.html" class="nav__brand" aria-label="Carol Magno Arquitetura — Início"><img src="assets/carol/logo-carol-magno.png" alt="Carol Magno Arquitetura" width="210" height="76"></a>
       <button class="nav__toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false"><span></span><span></span><span></span></button>
-      <nav class="nav__menu" id="navMenu"><a href="./index.html">Home</a><a href="./sobre.html">Sobre</a><a href="./sustentabilidade.html">Sustentabilidade</a><a href="./portfolio.html" class="is-active">Projetos</a><a href="./viabilidade.html">Viabilidade Arquitetônica</a><a href="./blog.html">Blog</a></nav>
+      <nav class="nav__menu" id="navMenu"><a href="./index.html">Home</a><a href="./portfolio.html" class="is-active">Projetos</a><a href="./sustentabilidade.html">Sustentabilidade</a><a href="./sobre.html">Sobre</a><a href="./blog.html">Mídias</a><a href="./politica-de-privacidade.html">Privacidade</a></nav>
       <a href="https://www.instagram.com/carolinamagnocorrea/" target="_blank" rel="noopener" class="btn btn--nav">Mande uma mensagem</a>
     </div>
   </header>
@@ -27,47 +27,37 @@
       <div class="container page-hero__grid">
         <div data-reveal>
           <p class="eyebrow">Projetos</p>
-          <h1>Galerias por categoria para navegar como álbuns.</h1>
-          <p class="lead">Edifícios, residenciais, comerciais e interiores reunidos em blocos visuais. Clique em qualquer imagem para abrir o álbum em primeiro plano e navegar pelas imagens da categoria.</p>
+          <h1>Galerias por categoria, com viabilidade dentro dos projetos.</h1>
+          <p class="lead">Edifícios, comerciais, interiores e sustentabilidade reunidos em blocos visuais. Nas galerias de edifícios e comerciais, cada imagem pode abrir um texto lateral sobre viabilidade arquitetônica.</p>
         </div>
         <div class="gallery-slices" aria-label="Categorias de projetos" data-reveal>
-          <a class="gallery-slice" href="#edificios"><img src="assets/carol/projeto-lucca.png" alt=""><span>Edifícios</span></a>
-          <a class="gallery-slice" href="#residenciais"><img src="assets/carol/categoria-residenciais.jpg" alt=""><span>Residenciais</span></a>
-          <a class="gallery-slice" href="#comerciais"><img src="assets/carol/thumb-salao-festas.png" alt=""><span>Comerciais</span></a>
+          <a class="gallery-slice" href="#edificios"><img src="assets/carol/projeto-lucca.png" alt=""><span>Edifícios + viabilidade</span></a>
+          <a class="gallery-slice" href="#comerciais"><img src="assets/carol/thumb-salao-festas.png" alt=""><span>Comerciais + viabilidade</span></a>
           <a class="gallery-slice" href="#interiores"><img src="assets/carol/projeto-interiores-riz.jpg" alt=""><span>Interiores</span></a>
+          <a class="gallery-slice" href="#sustentabilidade"><img src="assets/carol/categoria-edificios.jpg" alt=""><span>Sustentabilidade</span></a>
         </div>
       </div>
     </section>
 
     <section class="album-list">
       <div class="container album-list__inner">
-        <article class="album" id="edificios" data-reveal data-album="Edifícios">
-          <div class="album__head"><div><p class="eyebrow">Categoria</p><h2>Edifícios</h2></div><p>Completos e modernos valorizando o conforto do ocupante e de seu entorno.</p></div>
+        <article class="album" id="edificios" data-reveal data-album="Edifícios + viabilidade">
+          <div class="album__head"><div><p class="eyebrow">Categoria</p><h2>Edifícios + viabilidade</h2></div><p>Completos e modernos valorizando o conforto do ocupante e de seu entorno, com leitura de potencial, implantação e desempenho desde as primeiras decisões.</p></div>
           <div class="album__grid">
-            <button class="album__item album__item--featured" type="button" data-album-item data-src="assets/carol/projeto-lucca.png" data-title="LUCCA"><img src="assets/carol/projeto-lucca.png" alt="LUCCA"><span>LUCCA</span></button>
-            <button class="album__item" type="button" data-album-item data-src="assets/carol/thumb-vernazza.png" data-title="VERNAZZA"><img src="assets/carol/thumb-vernazza.png" alt="VERNAZZA"><span>VERNAZZA</span></button>
-            <button class="album__item" type="button" data-album-item data-src="assets/carol/thumb-treviso.png" data-title="TREVISO"><img src="assets/carol/thumb-treviso.png" alt="TREVISO"><span>TREVISO</span></button>
-            <button class="album__item" type="button" data-album-item data-src="assets/carol/thumb-perugia.png" data-title="PERUGIA"><img src="assets/carol/thumb-perugia.png" alt="PERUGIA"><span>PERUGIA</span></button>
-            <button class="album__item" type="button" data-album-item data-src="assets/carol/thumb-pavia.png" data-title="PAVIA"><img src="assets/carol/thumb-pavia.png" alt="PAVIA"><span>PAVIA</span></button>
-            <button class="album__item" type="button" data-album-item data-src="assets/carol/thumb-modena.png" data-title="MODENA"><img src="assets/carol/thumb-modena.png" alt="MODENA"><span>MODENA</span></button>
+            <button class="album__item album__item--featured" type="button" data-album-item data-src="assets/carol/projeto-lucca.png" data-title="LUCCA" data-note="Texto genérico para viabilidade arquitetônica: análise de implantação, área construída possível, orientação solar, acessos, relação com o entorno e caminhos de aprovação para orientar as próximas decisões do empreendimento."><img src="assets/carol/projeto-lucca.png" alt="LUCCA"><span>LUCCA</span></button>
+            <button class="album__item" type="button" data-album-item data-src="assets/carol/thumb-vernazza.png" data-title="VERNAZZA" data-note="Texto genérico para viabilidade arquitetônica: estudo de potencial do lote, volumetria inicial, premissas de conforto ambiental e organização de unidades para equilibrar desempenho, legislação e investimento."><img src="assets/carol/thumb-vernazza.png" alt="VERNAZZA"><span>VERNAZZA</span></button>
+            <button class="album__item" type="button" data-album-item data-src="assets/carol/thumb-treviso.png" data-title="TREVISO" data-note="Texto genérico para viabilidade arquitetônica: leitura de restrições, aproveitamento do terreno, distribuição de áreas e hipóteses de projeto para antecipar riscos antes do desenvolvimento completo."><img src="assets/carol/thumb-treviso.png" alt="TREVISO"><span>TREVISO</span></button>
+            <button class="album__item" type="button" data-album-item data-src="assets/carol/thumb-perugia.png" data-title="PERUGIA" data-note="Texto genérico para viabilidade arquitetônica: avaliação de acessos, circulação, conforto térmico e potencial construtivo para apoiar escolhas de implantação e programa."><img src="assets/carol/thumb-perugia.png" alt="PERUGIA"><span>PERUGIA</span></button>
+            <button class="album__item" type="button" data-album-item data-src="assets/carol/thumb-pavia.png" data-title="PAVIA" data-note="Texto genérico para viabilidade arquitetônica: estudo de alternativas iniciais para alinhar legislação, produto imobiliário, qualidade ambiental e clareza de investimento."><img src="assets/carol/thumb-pavia.png" alt="PAVIA"><span>PAVIA</span></button>
+            <button class="album__item" type="button" data-album-item data-src="assets/carol/thumb-modena.png" data-title="MODENA" data-note="Texto genérico para viabilidade arquitetônica: organização das premissas técnicas que ajudam a transformar potencial construtivo em projeto coerente, funcional e viável."><img src="assets/carol/thumb-modena.png" alt="MODENA"><span>MODENA</span></button>
           </div>
         </article>
 
-        <article class="album" id="residenciais" data-reveal data-album="Residenciais">
-          <div class="album__head"><div><p class="eyebrow">Categoria</p><h2>Residenciais</h2></div><p>Ambientes especialmente projetados para quem deseja morar em lugares incríveis.</p></div>
+        <article class="album" id="comerciais" data-reveal data-album="Comerciais + viabilidade">
+          <div class="album__head"><div><p class="eyebrow">Categoria</p><h2>Comerciais + viabilidade</h2></div><p>Projetos comerciais com funcionalidade, apresentação e conforto para quem usa o espaço, com análise inicial de fluxo, operação e potencial de uso.</p></div>
           <div class="album__grid">
-            <button class="album__item album__item--featured" type="button" data-album-item data-src="assets/carol/categoria-residenciais.jpg" data-title="Residenciais"><img src="assets/carol/categoria-residenciais.jpg" alt="Residenciais"><span>Residenciais</span></button>
-            <button class="album__item" type="button" data-album-item data-src="assets/carol/thumb-setville.png" data-title="SET VILLE"><img src="assets/carol/thumb-setville.png" alt="SET VILLE"><span>SET VILLE</span></button>
-            <button class="album__item" type="button" data-album-item data-src="assets/carol/thumb-guararema.png" data-title="GUARAREMA"><img src="assets/carol/thumb-guararema.png" alt="GUARAREMA"><span>GUARAREMA</span></button>
-            <button class="album__item" type="button" data-album-item data-src="assets/carol/thumb-alpha2.png" data-title="ALPHA 2"><img src="assets/carol/thumb-alpha2.png" alt="ALPHA 2"><span>ALPHA 2</span></button>
-          </div>
-        </article>
-
-        <article class="album" id="comerciais" data-reveal data-album="Comerciais">
-          <div class="album__head"><div><p class="eyebrow">Categoria</p><h2>Comerciais</h2></div><p>Projetos comerciais com funcionalidade, apresentação e conforto para quem usa o espaço.</p></div>
-          <div class="album__grid">
-            <button class="album__item album__item--featured" type="button" data-album-item data-src="assets/carol/thumb-salao-festas.png" data-title="SALÃO FESTAS"><img src="assets/carol/thumb-salao-festas.png" alt="SALÃO FESTAS"><span>SALÃO FESTAS</span></button>
-            <button class="album__item" type="button" data-album-item data-src="assets/carol/thumb-advocacia.png" data-title="OLIVEIRA E SOUZA ADVOCACIA"><img src="assets/carol/thumb-advocacia.png" alt="OLIVEIRA E SOUZA ADVOCACIA"><span>ADVOCACIA</span></button>
+            <button class="album__item album__item--featured" type="button" data-album-item data-src="assets/carol/thumb-salao-festas.png" data-title="SALÃO FESTAS" data-note="Texto genérico para viabilidade arquitetônica: leitura do programa, fluxo de usuários, áreas de apoio, acessibilidade e potencial de operação para orientar a implantação comercial."><img src="assets/carol/thumb-salao-festas.png" alt="SALÃO FESTAS"><span>SALÃO FESTAS</span></button>
+            <button class="album__item" type="button" data-album-item data-src="assets/carol/thumb-advocacia.png" data-title="OLIVEIRA E SOUZA ADVOCACIA" data-note="Texto genérico para viabilidade arquitetônica: avaliação de layout, recepção, circulação, privacidade, iluminação e adequação do espaço à rotina profissional."><img src="assets/carol/thumb-advocacia.png" alt="OLIVEIRA E SOUZA ADVOCACIA"><span>ADVOCACIA</span></button>
           </div>
         </article>
 
@@ -81,6 +71,15 @@
             <button class="album__item" type="button" data-album-item data-src="assets/carol/thumb-cozinha67.png" data-title="COZINHA 67"><img src="assets/carol/thumb-cozinha67.png" alt="COZINHA 67"><span>COZINHA 67</span></button>
           </div>
         </article>
+
+        <article class="album" id="sustentabilidade" data-reveal data-album="Sustentabilidade">
+          <div class="album__head"><div><p class="eyebrow">Categoria</p><h2>Sustentabilidade</h2></div><p>Premissas ambientais, conforto e certificações entram como leitura estratégica do projeto, com destaque para desempenho e redução de impactos.</p></div>
+          <div class="album__grid">
+            <button class="album__item album__item--featured" type="button" data-album-item data-src="assets/carol/categoria-edificios.jpg" data-title="Certificações ambientais"><img src="assets/carol/categoria-edificios.jpg" alt="Certificações ambientais"><span>Certificações</span></button>
+            <button class="album__item" type="button" data-album-item data-src="assets/carol/certificacoes-sustentabilidade.png" data-title="LEED, EDGE, GBC Casa&Condomínio e GBC Life"><img src="assets/carol/certificacoes-sustentabilidade.png" alt="LEED, EDGE, GBC Casa&Condomínio e GBC Life"><span>Selos</span></button>
+            <button class="album__item" type="button" data-album-item data-src="assets/carol/hero-fachada.jpg" data-title="Desempenho e conforto"><img src="assets/carol/hero-fachada.jpg" alt="Desempenho e conforto"><span>Desempenho</span></button>
+          </div>
+        </article>
       </div>
     </section>
   </main>
@@ -88,6 +87,11 @@
   <div class="lightbox" id="albumLightbox" aria-hidden="true" role="dialog" aria-label="Galeria de projeto">
     <button class="lightbox__close" type="button" data-lightbox-close aria-label="Fechar galeria">×</button>
     <button class="lightbox__nav lightbox__nav--prev" type="button" data-lightbox-prev aria-label="Imagem anterior">‹</button>
+    <button class="lightbox__note-toggle" type="button" data-lightbox-note-toggle aria-label="Recolher texto">‹</button>
+    <aside class="lightbox__note" data-lightbox-note>
+      <span>Viabilidade arquitetônica</span>
+      <p id="lightboxNote"></p>
+    </aside>
     <figure class="lightbox__figure">
       <img src="" alt="" id="lightboxImage">
       <figcaption><span id="lightboxAlbum"></span><strong id="lightboxTitle"></strong><small id="lightboxCount"></small></figcaption>
@@ -95,7 +99,7 @@
     <button class="lightbox__nav lightbox__nav--next" type="button" data-lightbox-next aria-label="Próxima imagem">›</button>
   </div>
 
-  <footer class="footer"><div class="container footer__grid"><div><a href="./index.html" class="footer__brand"><img src="assets/carol/logo-carol-magno.png" alt="Carol Magno Arquitetura" width="210" height="76"></a><p>Copyright © 2025 Carol Magno Arquitetura.</p></div><div class="footer__cols"><div><h4>Navegação</h4><a href="./sobre.html">Sobre nós</a><a href="./sustentabilidade.html">Sustentabilidade</a><a href="./portfolio.html">Projetos</a><a href="./viabilidade.html">Viabilidade Arquitetônica</a><a href="./blog.html">Blog</a></div><div><h4>Redes</h4><a href="http://www.facebook.com/carolmagnoarquitetura" target="_blank" rel="noopener">Facebook</a><a href="https://www.instagram.com/carolinamagnocorrea/" target="_blank" rel="noopener">Instagram</a><a href="http://linkedin.com/in/carolmagnoarq" target="_blank" rel="noopener">LinkedIn</a></div></div></div></footer>
+  <footer class="footer"><div class="container footer__grid"><div><a href="./index.html" class="footer__brand"><img src="assets/carol/logo-carol-magno.png" alt="Carol Magno Arquitetura" width="210" height="76"></a><p>Copyright © 2025 Carol Magno Arquitetura.</p></div><div class="footer__cols"><div><h4>Navegação</h4><a href="./portfolio.html">Projetos</a><a href="./sustentabilidade.html">Sustentabilidade</a><a href="./sobre.html">Sobre nós</a><a href="./blog.html">Mídias</a><a href="./politica-de-privacidade.html">Privacidade</a></div><div><h4>Redes</h4><a href="http://www.facebook.com/carolmagnoarquitetura" target="_blank" rel="noopener">Facebook</a><a href="https://www.instagram.com/carolinamagnocorrea/" target="_blank" rel="noopener">Instagram</a><a href="http://linkedin.com/in/carolmagnoarq" target="_blank" rel="noopener">LinkedIn</a></div></div></div></footer>
   <script src="js/main.js?v=20261001-4"></script>
 </body>
 </html>
