@@ -37,9 +37,6 @@
   var lightboxAlbum = document.getElementById("lightboxAlbum");
   var lightboxTitle = document.getElementById("lightboxTitle");
   var lightboxCount = document.getElementById("lightboxCount");
-  var lightboxNote = document.getElementById("lightboxNote");
-  var lightboxNoteBox = document.querySelector("[data-lightbox-note]");
-  var noteToggleBtn = document.querySelector("[data-lightbox-note-toggle]");
   var closeBtn = document.querySelector("[data-lightbox-close]");
   var prevBtn = document.querySelector("[data-lightbox-prev]");
   var nextBtn = document.querySelector("[data-lightbox-next]");
@@ -71,13 +68,6 @@
     lightboxAlbum.textContent = item.album;
     lightboxTitle.textContent = item.title;
     lightboxCount.textContent = (activeIndex + 1) + " / " + activeAlbum.length;
-    if (lightboxNote && lightboxNoteBox && noteToggleBtn) {
-      lightboxNote.textContent = item.note || "";
-      lightbox.classList.toggle("has-note", Boolean(item.note));
-      lightbox.classList.remove("is-note-collapsed");
-      noteToggleBtn.setAttribute("aria-label", "Recolher texto");
-      noteToggleBtn.textContent = "›";
-    }
   }
 
   function openLightbox(button) {
@@ -89,8 +79,7 @@
       return {
         album: albumName,
         src: albumButton.getAttribute("data-src"),
-        title: albumButton.getAttribute("data-title") || albumName,
-        note: albumButton.getAttribute("data-note") || ""
+        title: albumButton.getAttribute("data-title") || albumName
       };
     });
     activeIndex = button.classList.contains("album__item--more") ? Math.min(5, buttons.length - 1) : buttons.indexOf(button);
@@ -120,13 +109,6 @@
   if (closeBtn) closeBtn.addEventListener("click", closeLightbox);
   if (prevBtn) prevBtn.addEventListener("click", function () { moveLightbox(-1); });
   if (nextBtn) nextBtn.addEventListener("click", function () { moveLightbox(1); });
-  if (noteToggleBtn && lightbox) {
-    noteToggleBtn.addEventListener("click", function () {
-      var collapsed = lightbox.classList.toggle("is-note-collapsed");
-      noteToggleBtn.setAttribute("aria-label", collapsed ? "Mostrar texto" : "Recolher texto");
-      noteToggleBtn.textContent = collapsed ? "‹" : "›";
-    });
-  }
   if (lightbox) {
     lightbox.addEventListener("click", function (event) {
       if (event.target === lightbox) closeLightbox();
