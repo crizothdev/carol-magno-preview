@@ -16,6 +16,37 @@
     });
   }
 
+  var magazineReader = document.getElementById("magazineReader");
+  var magazinePdfFrame = document.getElementById("magazinePdfFrame");
+  var magazineReaderTitle = document.getElementById("magazineReaderTitle");
+  var magazineOpenPdf = document.getElementById("magazineOpenPdf");
+  var magazineCloseButton = document.querySelector("[data-magazine-close]");
+
+  document.querySelectorAll("[data-magazine-pdf]").forEach(function (link) {
+    link.addEventListener("click", function (event) {
+      if (!magazineReader || !magazinePdfFrame) return;
+      event.preventDefault();
+      var pdfUrl = link.getAttribute("href");
+      var editionTitle = link.getAttribute("data-magazine-title") || "Matéria de Carolina Magno";
+      magazineReaderTitle.textContent = editionTitle;
+      magazineOpenPdf.href = pdfUrl;
+      magazinePdfFrame.src = pdfUrl + "#toolbar=1&navpanes=0&view=FitH";
+      magazineReader.showModal();
+      document.body.style.overflow = "hidden";
+    });
+  });
+
+  if (magazineCloseButton && magazineReader) {
+    magazineCloseButton.addEventListener("click", function () { magazineReader.close(); });
+    magazineReader.addEventListener("click", function (event) {
+      if (event.target === magazineReader) magazineReader.close();
+    });
+    magazineReader.addEventListener("close", function () {
+      magazinePdfFrame.src = "about:blank";
+      document.body.style.overflow = "";
+    });
+  }
+
   var revealEls = document.querySelectorAll("[data-reveal]");
   if ("IntersectionObserver" in window && revealEls.length) {
     var observer = new IntersectionObserver(function (entries) {
@@ -106,6 +137,17 @@
     button.addEventListener("click", function () { openLightbox(button); });
   });
 
+  document.querySelectorAll("[data-showcase-gallery]").forEach(function (button) {
+    button.addEventListener("click", function () {
+      var albumName = button.getAttribute("data-showcase-gallery");
+      var album = Array.prototype.slice.call(document.querySelectorAll("[data-album]")).find(function (item) {
+        return item.getAttribute("data-album") === albumName;
+      });
+      var firstImage = album && album.querySelector("[data-album-item]");
+      if (firstImage) openLightbox(firstImage);
+    });
+  });
+
   if (closeBtn) closeBtn.addEventListener("click", closeLightbox);
   if (prevBtn) prevBtn.addEventListener("click", function () { moveLightbox(-1); });
   if (nextBtn) nextBtn.addEventListener("click", function () { moveLightbox(1); });
@@ -121,6 +163,141 @@
     if (event.key === "ArrowLeft") moveLightbox(-1);
     if (event.key === "ArrowRight") moveLightbox(1);
   });
+
+  var projectCatalog = document.getElementById("projectCatalog");
+  if (projectCatalog) {
+    var projectGroups = [
+      {
+        id: "edificios", title: "Edifícios", projects: [
+          { title: "Lucca", cover: "assets/carol/projeto-lucca.png", badge: "Galeria completa pendente", description: "Capa disponível. Imagens adicionais e ficha do projeto a receber do Guilherme." },
+          { title: "Vernazza", cover: "assets/carol/thumb-vernazza.png", badge: "Galeria completa pendente", description: "Capa disponível. Imagens adicionais e ficha do projeto a receber do Guilherme." },
+          { title: "Treviso", cover: "assets/carol/thumb-treviso.png", badge: "Galeria completa pendente", description: "Capa disponível. Imagens adicionais e ficha do projeto a receber do Guilherme." },
+          { title: "Perugia", cover: "assets/carol/thumb-perugia.png", badge: "Galeria completa pendente", description: "Capa disponível. Imagens adicionais e ficha do projeto a receber do Guilherme." },
+          { title: "Pavia", cover: "assets/carol/thumb-pavia.png", badge: "Galeria completa pendente", description: "Capa disponível. Imagens adicionais e ficha do projeto a receber do Guilherme." },
+          { title: "Modena", cover: "assets/carol/thumb-modena.png", badge: "Galeria completa pendente", description: "Capa disponível. Imagens adicionais e ficha do projeto a receber do Guilherme." },
+          { title: "Maranello", cover: "assets/carol/thumb-maranello.png", badge: "Galeria completa pendente", description: "Capa disponível. Imagens adicionais e ficha do projeto a receber do Guilherme." },
+          { title: "Bellagio", cover: "assets/carol/thumb-bellagio.png", badge: "Galeria completa pendente", description: "Capa disponível. Imagens adicionais e ficha do projeto a receber do Guilherme." }
+        ]
+      },
+      {
+        id: "comercial", title: "Comercial", projects: [
+          { title: "811", group: "Comercial 811", description: "Escritório corporativo com recepção, áreas de trabalho e ambientes de reunião." },
+          { title: "Dra. Nara", group: "Clínica Dra. Nara Andreetta", description: "Espaços de atendimento, recepção e apoio planejados para a rotina clínica." },
+          { title: "Advocacia", group: "Oliveira e Souza Advocacia", description: "Recepção e salas de atendimento e trabalho do escritório." },
+          { title: "Serimbura", group: "Recanto Serimbura", description: "Espaço de convivência com salão, varanda e áreas ajardinadas." }
+        ]
+      },
+      {
+        id: "interiores", title: "Interiores", projects: [
+          { title: "Solar dos Pinheiros", sourceTitle: "SOLAR DOS PINHEIROS", description: "Descrição do projeto pendente." },
+          { title: "Neo", pending: true, description: "Projeto incluído na lista; imagens e descrição pendentes." },
+          { title: "PJ", group: "Projeto PJ", description: "Reforma residencial com cozinha integrada à área social, marcenaria e renovação de acabamentos." },
+          { title: "FF", group: "Projeto FF", description: "Ambientes integrados, com cozinha, sala e suítes." },
+          { title: "Quarto adolescente", group: "Quarto do Filho", description: "Quarto com áreas de descanso, estudo e armazenamento." },
+          { title: "Quintal", group: "Quintal", description: "Jardim e área externa com deck, paisagismo e espaços de convivência." },
+          { title: "Turvo", pending: true, description: "Projeto incluído na lista; imagens e descrição pendentes." }
+        ]
+      }
+    ];
+
+    function findSourceProject(project) {
+      if (project.group) {
+        return Array.prototype.slice.call(document.querySelectorAll("[data-album]")).find(function (album) {
+          return album.getAttribute("data-album") === project.group;
+        }) || null;
+      }
+      if (project.sourceTitle) {
+        var sourceButton = Array.prototype.slice.call(document.querySelectorAll("[data-album-item]")).find(function (button) {
+          return button.getAttribute("data-title") === project.sourceTitle;
+        });
+        return sourceButton ? { button: sourceButton, album: sourceButton.closest("[data-album]") } : null;
+      }
+      return null;
+    }
+
+    function openProjectGallery(project) {
+      if (!lightbox) return;
+      var source = findSourceProject(project);
+      var sourceButtons = source && source.hasAttribute && source.hasAttribute("data-album") ? Array.prototype.slice.call(source.querySelectorAll("[data-album-item]")) : [];
+      if (source && source.button) sourceButtons = [source.button];
+      activeAlbum = sourceButtons.map(function (button) {
+        return {
+          album: project.title,
+          src: button.getAttribute("data-src"),
+          title: button.getAttribute("data-title") || project.title
+        };
+      });
+      if (!activeAlbum.length && project.cover) activeAlbum = [{ album: project.title, src: project.cover, title: project.title }];
+      if (!activeAlbum.length) return;
+      activeIndex = 0;
+      lightbox.classList.add("is-open");
+      lightbox.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+      renderLightbox();
+    }
+
+    projectGroups.forEach(function (group) {
+      var section = document.createElement("section");
+      section.className = "project-category";
+      section.id = "projects-" + group.id;
+      section.setAttribute("aria-labelledby", "projects-heading-" + group.id);
+      var heading = document.createElement("div");
+      heading.className = "project-category__heading";
+      heading.innerHTML = '<p class="eyebrow">Projetos</p><h2 id="projects-heading-' + group.id + '">' + group.title + '</h2>';
+      var grid = document.createElement("div");
+      grid.className = "projects-grid";
+      group.projects.forEach(function (project) {
+        var card = document.createElement(project.pending ? "article" : "button");
+        card.className = "project-card" + (project.pending ? " project-card--pending" : "");
+        if (!project.pending) {
+          card.type = "button";
+          card.setAttribute("aria-label", "Abrir galeria do projeto " + project.title);
+          card.addEventListener("click", function () { openProjectGallery(project); });
+        }
+        var source = findSourceProject(project);
+        var imagePath = project.cover || (source && source.button && source.button.getAttribute("data-src")) || (source && source.querySelector && source.querySelector("[data-album-item]") && source.querySelector("[data-album-item]").getAttribute("data-src"));
+        var media = document.createElement("span");
+        media.className = "project-card__media";
+        if (imagePath) {
+          var image = document.createElement("img");
+          image.src = imagePath;
+          image.alt = "";
+          image.loading = "lazy";
+          image.decoding = "async";
+          media.appendChild(image);
+        } else {
+          media.classList.add("project-card__media--empty");
+          var pendingLabel = document.createElement("span");
+          pendingLabel.textContent = "Imagem pendente";
+          media.appendChild(pendingLabel);
+        }
+        var body = document.createElement("span");
+        body.className = "project-card__body";
+        var meta = document.createElement("span");
+        meta.className = "project-card__meta";
+        meta.textContent = project.badge || (project.pending ? "Conteúdo pendente" : group.title);
+        var title = document.createElement("strong");
+        title.className = "project-card__title";
+        title.textContent = project.title;
+        var description = document.createElement("span");
+        description.className = "project-card__description";
+        description.textContent = project.description;
+        var action = document.createElement("span");
+        action.className = "project-card__action";
+        action.textContent = project.pending ? "Aguardando material" : "Ver projeto →";
+        body.append(meta, title, description, action);
+        card.append(media, body);
+        grid.appendChild(card);
+      });
+      section.append(heading, grid);
+      projectCatalog.appendChild(section);
+    });
+    var legacyProjectAlbums = document.querySelector(".album-list");
+    if (legacyProjectAlbums) {
+      legacyProjectAlbums.hidden = true;
+      legacyProjectAlbums.setAttribute("aria-hidden", "true");
+    }
+  }
 
   var blogApp = document.querySelector("[data-blog-app]");
 

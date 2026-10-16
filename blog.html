@@ -10,14 +10,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=20261012-medias">
+  <link rel="stylesheet" href="css/style.css?v=20261016-magazine-reader-v1">
 </head>
 <body>
   <header class="nav">
     <div class="container nav__inner">
       <a href="index.html" class="nav__brand" aria-label="Carol Magno Arquitetura — Início"><img src="assets/carol/logo-carol-magno.png" alt="Carol Magno Arquitetura" width="210" height="76"></a>
       <button class="nav__toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false"><span></span><span></span><span></span></button>
-      <nav class="nav__menu" id="navMenu"><a href="index.html">Home</a><a href="portfolio.html">Projetos</a><a href="sustentabilidade.html">Sustentabilidade</a><a href="sobre.html">Sobre</a><a href="blog.html" class="is-active">Mídias</a><a href="politica-de-privacidade.html">Privacidade</a></nav>
+      <nav class="nav__menu" id="navMenu"><a href="index.html">Home</a><a href="portfolio.html">Projetos</a><a href="sustentabilidade.html">Sustentabilidade</a><a href="sobre.html">Sobre</a><a href="blog.html" class="is-active">Mídias</a></nav>
       <a href="https://www.instagram.com/carolmagnoarquitetura/" target="_blank" rel="noopener" class="btn btn--nav">Mande uma mensagem</a>
     </div>
   </header>
@@ -33,14 +33,37 @@
       </div>
     </section>
 
-    <section class="process" data-reveal>
-      <div class="container process__grid">
-        <div class="process__image"><img src="assets/carol/media/capa-interarq-vale-do-paraiba-ed-37.jpg" alt="Capa da revista InterArq Especial Vale do Paraíba, edição 37"></div>
-        <div class="process__content">
-          <p class="eyebrow">Publicação em revista</p>
-          <h2>InterArq Especial Vale do Paraíba — Ed. 37</h2>
-          <p>A edição reúne 14 projetos que aproximam arquitetura, natureza e bem-estar, com soluções pensadas para valorizar a paisagem e o cotidiano.</p>
-          <a class="text-link" href="https://site.revistainterarq.com.br/revista/interarq-especial-vale-do-paraiba-ed-37/" target="_blank" rel="noopener">Ver edição completa</a>
+    <section class="magazine-section" aria-labelledby="magazines-title" data-reveal>
+      <div class="container">
+        <div class="magazine-feature">
+          <a class="magazine-feature__cover" href="assets/carol/media/magazines/interarq-interior-sp-43-carolina-magno.pdf" data-magazine-pdf data-magazine-title="InterArq Interior SP · edição 43" aria-haspopup="dialog" aria-label="Ler a matéria da edição 43 da InterArq">
+            <img src="assets/carol/media/magazines/previa-edicao-43.jpg" alt="Prévia da matéria Identidade Tropical, edição 43 da InterArq" loading="lazy">
+          </a>
+          <div class="magazine-feature__copy">
+            <p class="eyebrow">Publicação em destaque · InterArq 43</p>
+            <h2 id="magazines-title">Identidade Tropical</h2>
+            <p>Na edição 43 da InterArq Interior SP, Carolina Magno apresenta o escritório de 200 m² de uma empresa de importação e exportação de frutas. A paleta tropical, a luz natural e os ambientes integrados dão identidade ao espaço.</p>
+            <p class="magazine-feature__page">Matéria de Carolina Magno: <strong>páginas 2–4</strong>.</p>
+            <a class="text-link" href="assets/carol/media/magazines/interarq-interior-sp-43-carolina-magno.pdf" data-magazine-pdf data-magazine-title="InterArq Interior SP · edição 43" aria-haspopup="dialog">Ler matéria</a>
+          </div>
+        </div>
+
+        <div class="magazine-archive">
+          <div class="magazine-archive__heading"><p class="eyebrow">Outras edições</p><h3>Mais publicações</h3></div>
+          <div class="magazine-archive__grid">
+            <article class="magazine-card">
+              <a class="magazine-card__cover" href="assets/carol/media/magazines/interarq-especial-vale-do-paraiba-11-carolina-magno.pdf" data-magazine-pdf data-magazine-title="InterArq Especial Vale do Paraíba · edição 11" aria-haspopup="dialog" aria-label="Ler a matéria da edição 11">
+                <img src="assets/carol/media/magazines/previa-edicao-11.jpg" alt="Prévia da matéria de Carolina Magno, edição 11 da InterArq Especial Vale do Paraíba" loading="lazy">
+              </a>
+              <div class="magazine-card__copy"><p class="eyebrow">InterArq Especial Vale do Paraíba · Ed. 11</p><h4>Reforma e integração</h4><p>Carolina Magno apresenta a reforma de um apartamento, com home theater integrado ao estar, cozinha reorganizada e recuperação do piso de madeira. Matéria nas páginas 12–16.</p><a class="text-link" href="assets/carol/media/magazines/interarq-especial-vale-do-paraiba-11-carolina-magno.pdf" data-magazine-pdf data-magazine-title="InterArq Especial Vale do Paraíba · edição 11" aria-haspopup="dialog">Ler matéria</a></div>
+            </article>
+            <article class="magazine-card">
+              <a class="magazine-card__cover" href="assets/carol/media/magazines/interarq-especial-vale-do-paraiba-38-carolina-magno.pdf" data-magazine-pdf data-magazine-title="InterArq Especial Vale do Paraíba · edição 38" aria-haspopup="dialog" aria-label="Ler a matéria da edição 38">
+                <img src="assets/carol/media/magazines/previa-edicao-38.jpg" alt="Prévia da matéria de Carolina Magno, edição 38 da InterArq Especial Vale do Paraíba" loading="lazy">
+              </a>
+              <div class="magazine-card__copy"><p class="eyebrow">InterArq Especial Vale do Paraíba · Ed. 38</p><h4>Clínica dermatológica</h4><p>O projeto une duas salas comerciais e organiza recepção, atendimentos e áreas de apoio, equilibrando exigências técnicas com conforto e uma paleta neutra, madeira clara e detalhes dourados. Matéria nas páginas 64–66.</p><a class="text-link" href="assets/carol/media/magazines/interarq-especial-vale-do-paraiba-38-carolina-magno.pdf" data-magazine-pdf data-magazine-title="InterArq Especial Vale do Paraíba · edição 38" aria-haspopup="dialog">Ler matéria</a></div>
+            </article>
+          </div>
         </div>
       </div>
     </section>
@@ -50,7 +73,6 @@
         <div class="section-head"><div><p class="eyebrow">Seleção de conteúdos</p><h2>Arquitetura, projetos e escolhas que fazem a diferença.</h2></div><a class="text-link" href="https://www.instagram.com/carolmagnoarquitetura/" target="_blank" rel="noopener">Instagram</a></div>
         <div class="media-grid">
           <article class="media-card media-card--feature"><img src="assets/carol/media/reel-DcETGltDZ4A.jpg" alt="Miniatura do Reel sobre os princípios que orientam os projetos"><div><span>Instagram · Reel</span><h2>O que orienta cada projeto</h2><p>Técnica, funcionalidade, conforto, durabilidade e sustentabilidade guiam as decisões do escritório em projetos residenciais, comerciais e edifícios.</p><a class="text-link" href="https://www.instagram.com/p/DcETGltDZ4A/" target="_blank" rel="noopener">Assistir no Instagram</a></div></article>
-          <article class="media-card"><img src="assets/carol/media/reel-Dak8Tm6hrXY.jpg" alt="Miniatura do Reel sobre o processo do Projeto Renoir"><div><span>Instagram · Reel</span><h3>Projeto Renoir: arquitetura integrada</h3><p>Uma visão dos bastidores e das decisões coordenadas que levam o projeto do conceito às etapas de desenvolvimento.</p><a class="text-link" href="https://www.instagram.com/p/Dak8Tm6hrXY/" target="_blank" rel="noopener">Assistir no Instagram</a></div></article>
           <article class="media-card"><img src="assets/carol/media/reel-DYCSzFKhMuZ.jpg" alt="Miniatura do Reel sobre o Manual de Sustentabilidade de São José dos Campos"><div><span>Instagram · Reel</span><h3>Manual de Sustentabilidade de São José dos Campos</h3><p>Estratégias para edificações mais sustentáveis e como conhecê-las pode ajudar no planejamento e na aprovação de projetos.</p><a class="text-link" href="https://www.instagram.com/p/DYCSzFKhMuZ/" target="_blank" rel="noopener">Assistir no Instagram</a></div></article>
           <article class="media-card"><img src="assets/carol/media/reel-DVOBbFelm70.jpg" alt="Miniatura do Reel da reforma do Projeto PJ"><div><span>Instagram · Reel</span><h3>Reforma do Projeto PJ</h3><p>Seis meses de transformação, com novo layout para a cozinha, fluxos reorganizados e materiais integrados à área social.</p><a class="text-link" href="https://www.instagram.com/p/DVOBbFelm70/" target="_blank" rel="noopener">Assistir no Instagram</a></div></article>
         </div>
@@ -60,10 +82,20 @@
 
   <footer class="footer">
     <div class="container footer__grid">
-      <div><a href="index.html" class="footer__brand"><img src="assets/carol/logo-carol-magno.png" alt="Carol Magno Arquitetura" width="210" height="76"></a><p>Arquitetura e Sustentabilidade.</p><p>Copyright © 2025 Carol Magno Arquitetura.</p></div>
-      <div class="footer__cols"><div><h4>Navegação</h4><a href="portfolio.html">Projetos</a><a href="sustentabilidade.html">Sustentabilidade</a><a href="sobre.html">Sobre nós</a><a href="blog.html">Mídias</a><a href="politica-de-privacidade.html">Privacidade</a></div><div><h4>Redes</h4><a href="https://www.facebook.com/carolmagnoarquitetura" target="_blank" rel="noopener">Facebook</a><a href="https://www.instagram.com/carolmagnoarquitetura/" target="_blank" rel="noopener">Instagram</a><a href="https://www.linkedin.com/company/carol-magno-arquitetura/" target="_blank" rel="noopener">LinkedIn</a></div></div>
+      <div class="footer__identity">
+        <a href="index.html" class="footer__brand"><img src="assets/carol/logo-carol-magno.png" alt="Carol Magno Arquitetura" width="210" height="76"></a>
+        <div class="footer__identity-copy"><p>Arquitetura e Sustentabilidade.</p><p>Copyright © 2025 Carol Magno Arquitetura.</p></div>
+      </div>
+      <div class="footer__cols"><div class="footer__navigation"><h4>Navegação</h4><nav class="footer__link-grid" aria-label="Links do site"><a href="portfolio.html">Projetos</a><a href="sustentabilidade.html">Sustentabilidade</a><a href="sobre.html">Sobre nós</a><a href="blog.html">Mídias</a><a href="politica-de-privacidade.html">Política de privacidade</a></nav></div><div class="footer__social"><h4>Redes e contato</h4><nav class="footer__social-grid" aria-label="Redes e canais de contato"><a href="https://www.instagram.com/carolmagnoarquitetura/" target="_blank" rel="noopener">Instagram</a><a href="https://www.facebook.com/carolmagnoarquitetura" target="_blank" rel="noopener">Facebook</a><a href="https://www.linkedin.com/company/carol-magno-arquitetura/" target="_blank" rel="noopener">LinkedIn</a><a href="https://wa.me/5512991918189?text=Ol%C3%A1%21%20Vim%20pelo%20site" target="_blank" rel="noopener">WhatsApp</a><a href="mailto:carolmagno.arq@gmail.com">E-mail</a></nav></div></div>
     </div>
   </footer>
-  <script src="js/main.js?v=20261012-medias"></script>
+  <dialog class="magazine-reader" id="magazineReader" aria-labelledby="magazineReaderTitle">
+    <div class="magazine-reader__header">
+      <div><p class="eyebrow">Leitor de revista</p><h2 id="magazineReaderTitle">Matéria de Carolina Magno</h2></div>
+      <div class="magazine-reader__actions"><a id="magazineOpenPdf" href="#" target="_blank" rel="noopener">Abrir em outra aba</a><button type="button" data-magazine-close aria-label="Fechar leitor">Fechar <span aria-hidden="true">×</span></button></div>
+    </div>
+    <iframe id="magazinePdfFrame" title="Leitor PDF da matéria de Carolina Magno" src="about:blank"></iframe>
+  </dialog>
+  <script src="js/main.js?v=20261016-magazine-reader-v1"></script>
 </body>
 </html>

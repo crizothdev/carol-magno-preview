@@ -4,39 +4,89 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Projetos — Carol Magno Arquitetura</title>
-  <meta name="description" content="Galerias de projetos da Carol Magno Arquitetura: edifícios, comerciais, interiores e sustentabilidade.">
+  <meta name="description" content="Projetos de arquitetura e interiores da Carol Magno Arquitetura: edifícios, espaços comerciais e residências.">
   <script>document.documentElement.classList.add("js");</script>
   <link rel="icon" type="image/png" href="assets/carol/favicon-carol.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=20261014-gallery-content">
+  <link rel="stylesheet" href="css/style.css?v=20261015-sage-v2">
 </head>
 <body>
   <header class="nav">
     <div class="container nav__inner">
       <a href="index.html" class="nav__brand" aria-label="Carol Magno Arquitetura — Início"><img src="assets/carol/logo-carol-magno.png" alt="Carol Magno Arquitetura" width="210" height="76"></a>
       <button class="nav__toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false"><span></span><span></span><span></span></button>
-      <nav class="nav__menu" id="navMenu"><a href="index.html">Home</a><a href="portfolio.html" class="is-active">Projetos</a><a href="sustentabilidade.html">Sustentabilidade</a><a href="sobre.html">Sobre</a><a href="blog.html">Mídias</a><a href="politica-de-privacidade.html">Privacidade</a></nav>
+      <nav class="nav__menu" id="navMenu"><a href="index.html">Home</a><a href="portfolio.html" class="is-active">Projetos</a><a href="sustentabilidade.html">Sustentabilidade</a><a href="sobre.html">Sobre</a><a href="blog.html">Mídias</a></nav>
       <a href="https://www.instagram.com/carolmagnoarquitetura/" target="_blank" rel="noopener" class="btn btn--nav">Mande uma mensagem</a>
     </div>
   </header>
 
   <main>
-    <section class="page-hero page-hero--projects">
-      <div class="container page-hero__grid">
+    <section class="projects-showcase" aria-labelledby="projects-showcase-title">
+      <div class="container projects-showcase__intro">
         <div data-reveal>
-          <p class="eyebrow">Projetos</p>
-          <h1>Diferentes escalas, uma mesma forma de pensar arquitetura.</h1>
-          <p class="lead">Desenvolvemos projetos de edifícios, espaços comerciais, interiores e soluções voltadas à sustentabilidade, em diferentes escalas e contextos. Cada trabalho parte de necessidades específicas e ganha forma a partir das características do lugar, do uso e dos objetivos de cada cliente.</p>
+          <p class="eyebrow">Portfólio / Projetos</p>
+          <h1 id="projects-showcase-title">Espaços que contam histórias de viver.</h1>
         </div>
-        <div class="gallery-slices" aria-label="Categorias de projetos" data-reveal>
-          <a class="gallery-slice" href="#edificios"><img src="assets/carol/projeto-lucca.png" alt=""><span>Edifícios</span></a>
-          <a class="gallery-slice" href="#comerciais"><img src="assets/carol/thumb-salao-festas.png" alt=""><span>Comerciais</span></a>
-          <a class="gallery-slice" href="#interiores"><img src="assets/carol/projeto-interiores-riz.jpg" alt=""><span>Interiores</span></a>
-          <a class="gallery-slice" href="#sustentabilidade"><img src="assets/carol/categoria-edificios.jpg" alt=""><span>Sustentabilidade</span></a>
+        <div class="projects-showcase__summary" data-reveal>
+          <p>Uma seleção de projetos autorais, pensados para acolher a rotina, valorizar a luz e criar vínculos com cada lugar.</p>
+          <span>ARQUITETURA + INTERIORES</span>
         </div>
       </div>
+      <nav class="container showcase-filters" aria-label="Ir para uma categoria de projetos">
+        <a href="#projectCatalog">TODOS OS PROJETOS</a>
+        <a href="#projects-edificios">EDIFÍCIOS</a>
+        <a href="#projects-comercial">COMERCIAL</a>
+        <a href="#projects-interiores">INTERIORES</a>
+      </nav>
+      <div class="container projects-showcase__feature" data-reveal>
+        <button class="projects-showcase__image" type="button" data-showcase-gallery="Comercial 811" aria-label="Abrir galeria do Comercial 811">
+          <img src="assets/carol/gallery/comercial-811/01.webp" alt="Interior do projeto Comercial 811" fetchpriority="high">
+          <span>Projeto em destaque</span>
+        </button>
+        <div class="projects-showcase__copy">
+          <span class="projects-showcase__number">01 / 14 imagens</span>
+          <h1 id="projects-showcase-title">Comercial 811</h1>
+          <p class="eyebrow">Comercial</p>
+          <p>Escritório corporativo com recepção, áreas de trabalho e ambientes de reunião.</p>
+          <button class="projects-showcase__link" type="button" data-showcase-gallery="Comercial 811">Explorar projeto <span aria-hidden="true">↗</span></button>
+        </div>
+      </div>
+      <section class="container showcase-more" aria-labelledby="showcase-more-title">
+        <div class="showcase-more__heading">
+          <div><p class="eyebrow">Outros projetos</p><h2 id="showcase-more-title">Mais espaços, novas histórias.</h2></div>
+          <a href="#projectCatalog">Ver todos ↓</a>
+        </div>
+        <div class="showcase-more__grid">
+          <article class="showcase-project">
+            <button class="showcase-project__image" type="button" data-showcase-gallery="Projeto PJ" aria-label="Abrir galeria do Projeto PJ">
+              <img src="assets/carol/gallery/residencial-pj/01.webp" alt="Ambiente integrado do Projeto PJ" loading="lazy" decoding="async">
+            </button>
+            <div class="showcase-project__details">
+              <p class="eyebrow">Interiores · Residencial</p>
+              <h3>Projeto PJ</h3>
+              <p>Reforma residencial com cozinha integrada à área social, marcenaria e renovação de acabamentos.</p>
+              <button type="button" data-showcase-gallery="Projeto PJ">Ver projeto <span aria-hidden="true">↗</span></button>
+            </div>
+          </article>
+          <article class="showcase-project">
+            <button class="showcase-project__image" type="button" data-showcase-gallery="Quintal" aria-label="Abrir galeria do projeto Quintal">
+              <img src="assets/carol/gallery/residencial-quintal/01.webp" alt="Jardim e área externa do projeto Quintal" loading="lazy" decoding="async">
+            </button>
+            <div class="showcase-project__details">
+              <p class="eyebrow">Interiores · Área externa</p>
+              <h3>Quintal</h3>
+              <p>Jardim e área externa com deck, paisagismo e espaços de convivência.</p>
+              <button type="button" data-showcase-gallery="Quintal">Ver projeto <span aria-hidden="true">↗</span></button>
+            </div>
+          </article>
+        </div>
+      </section>
+    </section>
+
+    <section class="projects-board" aria-label="Projetos por categoria">
+      <div class="container projects-board__inner" id="projectCatalog"></div>
     </section>
 
     <section class="album-list">
@@ -50,6 +100,7 @@
             <button class="album__item" type="button" data-album-item data-src="assets/carol/thumb-perugia.png" data-title="PERUGIA"><img src="assets/carol/thumb-perugia.png" alt="PERUGIA"><span>PERUGIA</span></button>
             <button class="album__item" type="button" data-album-item data-src="assets/carol/thumb-pavia.png" data-title="PAVIA"><img src="assets/carol/thumb-pavia.png" alt="PAVIA"><span>PAVIA</span></button>
             <button class="album__item" type="button" data-album-item data-src="assets/carol/thumb-modena.png" data-title="MODENA"><img src="assets/carol/thumb-modena.png" alt="MODENA"><span>MODENA</span></button>
+            <div class="album__item album__item--placeholder" aria-label="Van Gogh — imagens em breve"><span class="album__placeholder-kicker">Novo projeto</span><h3 class="album__placeholder-title">Van Gogh</h3><small class="album__placeholder-status">Imagens em breve</small></div>
           </div>
         </article>
 
@@ -58,6 +109,7 @@
           <div class="album__grid">
             <button class="album__item album__item--featured" type="button" data-album-item data-src="assets/carol/thumb-salao-festas.png" data-title="SALÃO FESTAS"><img src="assets/carol/thumb-salao-festas.png" alt="SALÃO FESTAS"><span>SALÃO FESTAS</span></button>
             <button class="album__item" type="button" data-album-item data-src="assets/carol/thumb-advocacia.png" data-title="OLIVEIRA E SOUZA ADVOCACIA"><img src="assets/carol/thumb-advocacia.png" alt="OLIVEIRA E SOUZA ADVOCACIA"><span>ADVOCACIA</span></button>
+            <div class="album__item album__item--placeholder" aria-label="Souza&amp;Souza — imagens em breve"><span class="album__placeholder-kicker">Novo projeto</span><h3 class="album__placeholder-title">Souza&amp;Souza</h3><small class="album__placeholder-status">Imagens em breve</small></div>
           </div>
         </article>
 
@@ -196,14 +248,6 @@
           </div>
         </article>
 
-        <article class="album" id="sustentabilidade" data-reveal data-album="Sustentabilidade">
-          <div class="album__head"><div><p class="eyebrow">Categoria</p><h2>Sustentabilidade</h2></div><p>Desenvolvemos projetos com estratégias voltadas ao desempenho e à sustentabilidade e, quando aplicável, também atuamos nos processos de certificação LEED, EDGE, GBC Casa & Condomínio e GBC Life.</p></div>
-          <div class="album__grid">
-            <button class="album__item album__item--featured" type="button" data-album-item data-src="assets/carol/categoria-edificios.jpg" data-title="Certificações ambientais"><img src="assets/carol/categoria-edificios.jpg" alt="Certificações ambientais"><span>Certificações</span></button>
-            <button class="album__item" type="button" data-album-item data-src="assets/carol/certificacoes-sustentabilidade.png" data-title="LEED, EDGE, GBC Casa&Condomínio e GBC Life"><img src="assets/carol/certificacoes-sustentabilidade.png" alt="LEED, EDGE, GBC Casa&Condomínio e GBC Life"><span>Selos</span></button>
-            <button class="album__item" type="button" data-album-item data-src="assets/carol/hero-fachada.jpg" data-title="Desempenho e conforto"><img src="assets/carol/hero-fachada.jpg" alt="Desempenho e conforto"><span>Desempenho</span></button>
-          </div>
-        </article>
       </div>
     </section>
   </main>
@@ -218,9 +262,15 @@
     <button class="lightbox__nav lightbox__nav--next" type="button" data-lightbox-next aria-label="Próxima imagem">›</button>
   </div>
 
-  <footer class="footer"><div class="container footer__grid"><div><a href="index.html" class="footer__brand"><img src="assets/carol/logo-carol-magno.png" alt="Carol Magno Arquitetura" width="210" height="76"></a><p>Copyright © 2025 Carol Magno Arquitetura.</p></div><div class="footer__cols"><div><h4>Navegação</h4><a href="portfolio.html">Projetos</a><a href="sustentabilidade.html">Sustentabilidade</a><a href="sobre.html">Sobre nós</a><a href="blog.html">Mídias</a><a href="politica-de-privacidade.html">Privacidade</a></div><div><h4>Redes</h4><a href="https://www.facebook.com/carolmagnoarquitetura" target="_blank" rel="noopener">Facebook</a><a href="https://www.instagram.com/carolmagnoarquitetura/" target="_blank" rel="noopener">Instagram</a><a href="https://www.linkedin.com/company/carol-magno-arquitetura/" target="_blank" rel="noopener">LinkedIn</a></div></div></div></footer>
-  <script src="js/main.js?v=20261014-gallery-content"></script>
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div class="footer__identity">
+        <a href="index.html" class="footer__brand"><img src="assets/carol/logo-carol-magno.png" alt="Carol Magno Arquitetura" width="210" height="76"></a>
+        <div class="footer__identity-copy"><p>Arquitetura e Sustentabilidade.</p><p>Copyright © 2025 Carol Magno Arquitetura.</p></div>
+      </div>
+      <div class="footer__cols"><div class="footer__navigation"><h4>Navegação</h4><nav class="footer__link-grid" aria-label="Links do site"><a href="portfolio.html">Projetos</a><a href="sustentabilidade.html">Sustentabilidade</a><a href="sobre.html">Sobre nós</a><a href="blog.html">Mídias</a><a href="politica-de-privacidade.html">Política de privacidade</a></nav></div><div class="footer__social"><h4>Redes e contato</h4><nav class="footer__social-grid" aria-label="Redes e canais de contato"><a href="https://www.instagram.com/carolmagnoarquitetura/" target="_blank" rel="noopener">Instagram</a><a href="https://www.facebook.com/carolmagnoarquitetura" target="_blank" rel="noopener">Facebook</a><a href="https://www.linkedin.com/company/carol-magno-arquitetura/" target="_blank" rel="noopener">LinkedIn</a><a href="https://wa.me/5512991918189?text=Ol%C3%A1%21%20Vim%20pelo%20site" target="_blank" rel="noopener">WhatsApp</a><a href="mailto:carolmagno.arq@gmail.com">E-mail</a></nav></div></div>
+    </div>
+  </footer>
+  <script src="js/main.js?v=20261015-project-redesign-v5"></script>
 </body>
 </html>
-
-\r\n
