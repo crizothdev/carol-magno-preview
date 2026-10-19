@@ -176,7 +176,8 @@
           { title: "Pavia", cover: "assets/carol/thumb-pavia.png", badge: "Galeria completa pendente", description: "Capa disponível. Imagens adicionais e ficha do projeto a receber do Guilherme." },
           { title: "Modena", cover: "assets/carol/thumb-modena.png", badge: "Galeria completa pendente", description: "Capa disponível. Imagens adicionais e ficha do projeto a receber do Guilherme." },
           { title: "Maranello", cover: "assets/carol/thumb-maranello.png", badge: "Galeria completa pendente", description: "Capa disponível. Imagens adicionais e ficha do projeto a receber do Guilherme." },
-          { title: "Bellagio", cover: "assets/carol/thumb-bellagio.png", badge: "Galeria completa pendente", description: "Capa disponível. Imagens adicionais e ficha do projeto a receber do Guilherme." }
+          { title: "Bellagio", cover: "assets/carol/thumb-bellagio.png", badge: "Galeria completa pendente", description: "Capa disponível. Imagens adicionais e ficha do projeto a receber do Guilherme." },
+          { title: "Van Gogh", pending: true, description: "Projeto incluído na lista; imagens pendentes." }
         ]
       },
       {
@@ -184,7 +185,8 @@
           { title: "811", group: "Comercial 811", description: "Escritório corporativo com recepção, áreas de trabalho e ambientes de reunião." },
           { title: "Dra. Nara", group: "Clínica Dra. Nara Andreetta", description: "Espaços de atendimento, recepção e apoio planejados para a rotina clínica." },
           { title: "Advocacia", group: "Oliveira e Souza Advocacia", description: "Recepção e salas de atendimento e trabalho do escritório." },
-          { title: "Serimbura", group: "Recanto Serimbura", description: "Espaço de convivência com salão, varanda e áreas ajardinadas." }
+          { title: "Serimbura", group: "Recanto Serimbura", description: "Espaço de convivência com salão, varanda e áreas ajardinadas." },
+          { title: "Souza&Souza", pending: true, description: "Projeto incluído na lista; imagens pendentes." }
         ]
       },
       {
