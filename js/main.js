@@ -175,6 +175,8 @@
           { title: "Perugia", cover: "assets/carol/thumb-perugia.png", badge: "Galeria completa pendente", description: "Capa disponível. Imagens adicionais e ficha do projeto a receber do Guilherme." },
           { title: "Pavia", cover: "assets/carol/thumb-pavia.png", badge: "Galeria completa pendente", description: "Capa disponível. Imagens adicionais e ficha do projeto a receber do Guilherme." },
           { title: "Modena", cover: "assets/carol/thumb-modena.png", badge: "Galeria completa pendente", description: "Capa disponível. Imagens adicionais e ficha do projeto a receber do Guilherme." },
+          { title: "Renoir", group: "Renoir", description: "Estudo de fachada residencial com diferentes perspectivas do edifício e da área de lazer." },
+          { title: "Montalcino", group: "Montalcino", description: "Edifício residencial apresentado em diferentes perspectivas da fachada e do acesso." },
           { title: "Maranello", cover: "assets/carol/thumb-maranello.png", badge: "Galeria completa pendente", description: "Capa disponível. Imagens adicionais e ficha do projeto a receber do Guilherme." },
           { title: "Bellagio", cover: "assets/carol/thumb-bellagio.png", badge: "Galeria completa pendente", description: "Capa disponível. Imagens adicionais e ficha do projeto a receber do Guilherme." },
           { title: "Van Gogh", pending: true, description: "Projeto incluído na lista; imagens pendentes." }
