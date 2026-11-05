@@ -489,7 +489,7 @@
       if (window.CMAG_ANALYTICS_BUNDLE_LOADED || !hasFirebaseConfig()) return;
       window.CMAG_ANALYTICS_BUNDLE_LOADED = true;
       var script = document.createElement("script");
-      script.src = "js/firebase-analytics.bundle.js?v=20261103-firebase-analytics-v1";
+      script.src = "js/firebase-analytics.bundle.js?v=20261105-firebase-analytics-v1";
       script.async = true;
       document.head.appendChild(script);
     }
@@ -533,7 +533,7 @@
     }
 
     var configScript = document.createElement("script");
-    configScript.src = "js/firebase-config.js?v=20261103-firebase-config-v1";
+    configScript.src = "js/firebase-config.js?v=20261105-firebase-config-v1";
     configScript.onload = function () {
       if (!hasFirebaseConfig()) return;
       addPreferencesControl();
