@@ -512,17 +512,6 @@
       banner.querySelector("[data-consent-reject]").addEventListener("click", function () { closeBanner("rejected"); });
     }
 
-    function addPreferencesControl() {
-      var nav = document.querySelector(".footer__navigation .footer__link-grid");
-      if (!nav || nav.querySelector("[data-analytics-preferences]")) return;
-      var button = document.createElement("button");
-      button.type = "button";
-      button.className = "analytics-preferences";
-      button.setAttribute("data-analytics-preferences", "");
-      button.textContent = "Preferências de medição";
-      button.addEventListener("click", showBanner);
-      nav.appendChild(button);
-    }
 
     function bindPreferencesControls() {
       document.querySelectorAll("[data-analytics-preferences]").forEach(function (button) {
@@ -536,7 +525,7 @@
     configScript.src = "js/firebase-config.js?v=20261105-firebase-config-v1";
     configScript.onload = function () {
       if (!hasFirebaseConfig()) return;
-      addPreferencesControl();
+
       bindPreferencesControls();
       var choice = "";
       try { choice = window.localStorage.getItem(consentKey) || ""; } catch (error) {}
