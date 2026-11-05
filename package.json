@@ -1,0 +1,14 @@
+{
+  "name": "carol-magno-arquitetura-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:analytics": "esbuild ./js/firebase-analytics.js --bundle --platform=browser --format=iife --target=es2020 --minify --outfile=./js/firebase-analytics.bundle.js"
+  },
+  "dependencies": {
+    "firebase": "^13.2.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2"
+  }
+}

@@ -4,7 +4,20 @@
     "ignore": [
       "firebase.json",
       "**/.*",
-      "**/node_modules/**"
+      "**/node_modules/**",
+      "package.json",
+      "package-lock.json",
+      "README.md",
+      "**/*.md",
+      "tmp/**",
+      "output/**",
+      "dist/**",
+      "build/**",
+      "*-fullpage.*",
+      "footer-atualizado.jpg",
+      "portfolio-backup-*.html",
+      "academia-blue-512.png",
+      "js/firebase-analytics.js"
     ]
   }
 }

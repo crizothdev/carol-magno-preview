@@ -194,12 +194,12 @@
       {
         id: "interiores", title: "Interiores", projects: [
           { title: "Solar dos Pinheiros", sourceTitle: "SOLAR DOS PINHEIROS", description: "Descrição do projeto pendente." },
-          { title: "Neo", pending: true, description: "Projeto incluído na lista; imagens e descrição pendentes." },
+          { title: "Neo", group: "Edifício Neo", description: "Requalificação e modernização do apartamento, com integração dos ambientes." },
           { title: "PJ", group: "Projeto PJ", description: "Reforma residencial com cozinha integrada à área social, marcenaria e renovação de acabamentos." },
           { title: "FF", group: "Projeto FF", description: "Ambientes integrados, com cozinha, sala e suítes." },
           { title: "Quarto adolescente", group: "Quarto do Filho", description: "Quarto com áreas de descanso, estudo e armazenamento." },
           { title: "Quintal", group: "Quintal", description: "Jardim e área externa com deck, paisagismo e espaços de convivência." },
-          { title: "Turvo", pending: true, description: "Projeto incluído na lista; imagens e descrição pendentes." }
+          { title: "Turvo", group: "Projeto Turvo", description: "Projeto residencial que busca integrar ambientes internos e externos." }
         ]
       }
     ];
@@ -475,4 +475,74 @@
       });
     }
   }
+
+  (function setupAnalyticsConsent() {
+    var consentKey = "cmag-analytics-consent";
+    var banner = null;
+
+    function hasFirebaseConfig() {
+      var config = window.CMAG_FIREBASE_CONFIG;
+      return !!(config && config.apiKey && config.projectId && config.appId && /^G-[A-Z0-9]+$/i.test(config.measurementId || ""));
+    }
+
+    function loadAnalyticsBundle() {
+      if (window.CMAG_ANALYTICS_BUNDLE_LOADED || !hasFirebaseConfig()) return;
+      window.CMAG_ANALYTICS_BUNDLE_LOADED = true;
+      var script = document.createElement("script");
+      script.src = "js/firebase-analytics.bundle.js?v=20261103-firebase-analytics-v1";
+      script.async = true;
+      document.head.appendChild(script);
+    }
+
+    function closeBanner(choice) {
+      try { window.localStorage.setItem(consentKey, choice); } catch (error) {}
+      if (banner) banner.remove();
+      if (choice === "accepted") loadAnalyticsBundle();
+    }
+
+    function showBanner() {
+      if (banner) banner.remove();
+      banner = document.createElement("section");
+      banner.className = "analytics-consent";
+      banner.setAttribute("role", "dialog");
+      banner.setAttribute("aria-label", "Preferências de medição do site");
+      banner.innerHTML = '<div class="analytics-consent__copy"><strong>Privacidade e medição</strong><p>Podemos usar dados de navegação para entender o uso do site. Você pode aceitar ou recusar a medição. <a href="politica-de-privacidade.html">Leia a política de privacidade</a>.</p></div><div class="analytics-consent__actions"><button type="button" class="analytics-consent__button analytics-consent__button--accept" data-consent-accept>Aceitar</button><button type="button" class="analytics-consent__button" data-consent-reject>Recusar</button></div>';
+      document.body.appendChild(banner);
+      banner.querySelector("[data-consent-accept]").addEventListener("click", function () { closeBanner("accepted"); });
+      banner.querySelector("[data-consent-reject]").addEventListener("click", function () { closeBanner("rejected"); });
+    }
+
+    function addPreferencesControl() {
+      var nav = document.querySelector(".footer__navigation .footer__link-grid");
+      if (!nav || nav.querySelector("[data-analytics-preferences]")) return;
+      var button = document.createElement("button");
+      button.type = "button";
+      button.className = "analytics-preferences";
+      button.setAttribute("data-analytics-preferences", "");
+      button.textContent = "Preferências de medição";
+      button.addEventListener("click", showBanner);
+      nav.appendChild(button);
+    }
+
+    function bindPreferencesControls() {
+      document.querySelectorAll("[data-analytics-preferences]").forEach(function (button) {
+        if (button.getAttribute("data-analytics-bound") === "true") return;
+        button.setAttribute("data-analytics-bound", "true");
+        button.addEventListener("click", showBanner);
+      });
+    }
+
+    var configScript = document.createElement("script");
+    configScript.src = "js/firebase-config.js?v=20261103-firebase-config-v1";
+    configScript.onload = function () {
+      if (!hasFirebaseConfig()) return;
+      addPreferencesControl();
+      bindPreferencesControls();
+      var choice = "";
+      try { choice = window.localStorage.getItem(consentKey) || ""; } catch (error) {}
+      if (choice === "accepted") loadAnalyticsBundle();
+      else if (choice !== "rejected") showBanner();
+    };
+    document.head.appendChild(configScript);
+  })();
 })();
