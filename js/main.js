@@ -188,7 +188,7 @@
           { title: "Dra. Nara", group: "Clínica Dra. Nara Andreetta", description: "Espaços de atendimento, recepção e apoio planejados para a rotina clínica." },
           { title: "Advocacia", group: "Oliveira e Souza Advocacia", description: "Recepção e salas de atendimento e trabalho do escritório." },
           { title: "Serimbura", group: "Recanto Serimbura", gallerySlug: "recanto-serimbura", galleryCount: 17, fullImage: true, description: "Espaço de convivência com salão, varanda e áreas ajardinadas." },
-          { title: "Souza&Souza", pending: true, hidden: true, description: "Projeto incluído na lista; imagens pendentes." }
+          { title: "Souza & Souza", group: "Souza & Souza", cover: "assets/carol/gallery/souza-e-souza/capa.webp", gallerySlug: "souza-e-souza", galleryCount: 8, description: "Escritório corporativo com recepção, estações de trabalho e sala de reunião." }
         ]
       },
       {
