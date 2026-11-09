@@ -112,3 +112,11 @@ html.js [data-reveal]{opacity:0;transform:translateY(22px);transition:opacity .6
 .lightbox__figure img{background:#0d132a}
 
 @media(max-width:920px){.process__image{padding-top:0}}
+.project-card--full-image .project-card__media img{background:#f0f0eb;object-fit:contain}.project-card--full-image:hover .project-card__media img,.project-card--full-image:focus-visible .project-card__media img{filter:none;transform:none}
+.page-hero--split .sustainability-moodboard--image{overflow:hidden;padding:0}.page-hero--split .sustainability-moodboard--image img{aspect-ratio:auto;background:#e8e9e1;height:100%;object-fit:contain;width:100%}
+.intro__grid{align-items:start}.intro__grid>div:first-child h2{margin-top:0}.sustainability-section-kicker{margin-bottom:24px}.sustainability-project-image{background:#e8e9e1;margin:24px 0 0}.sustainability-project-image img{display:block;height:auto;object-fit:contain;width:100%}
+.page-hero--split .sustainability-moodboard--image{aspect-ratio:auto;background:transparent;border:0;display:block;min-height:0;padding:0}.page-hero--split .sustainability-moodboard--image::before,.page-hero--split .sustainability-moodboard--image::after{display:none}.page-hero--split .sustainability-moodboard--image img{aspect-ratio:auto;display:block;height:auto;object-fit:contain;width:100%}
+.certifications__inner{align-items:initial;display:block}.certifications__inner>.sustainability-section-kicker{margin-bottom:24px}.certifications__layout{align-items:start;display:grid;gap:clamp(40px,7vw,92px);grid-template-columns:.9fr 1.1fr}.certifications__heading h2{margin:0}.certifications__content{align-self:start}.certification-groups{margin-top:clamp(40px,6vw,72px)}.certification-group{text-align:center}.certification-group img{display:block;margin:22px auto 0;max-width:828px;width:100%}
+@media(max-width:920px){.certifications__layout{grid-template-columns:1fr}}
+.page-hero--sustainability .page-hero__grid{gap:clamp(28px,4vw,56px);grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr)}.page-hero--sustainability h1{font-size:clamp(36px,4.6vw,60px)}.page-hero--sustainability .sustainability-moodboard--image{justify-self:stretch;width:100%}
+@media(max-width:920px){.page-hero--sustainability .page-hero__grid{grid-template-columns:1fr}}

@@ -169,17 +169,17 @@
     var projectGroups = [
       {
         id: "edificios", title: "Edifícios", projects: [
-          { title: "Lucca", cover: "assets/carol/projeto-lucca.png", badge: "Galeria completa pendente", description: "Capa disponível. Imagens adicionais e ficha do projeto a receber do Guilherme." },
-          { title: "Vernazza", cover: "assets/carol/thumb-vernazza.png", badge: "Galeria completa pendente", description: "Capa disponível. Imagens adicionais e ficha do projeto a receber do Guilherme." },
-          { title: "Treviso", cover: "assets/carol/thumb-treviso.png", badge: "Galeria completa pendente", description: "Capa disponível. Imagens adicionais e ficha do projeto a receber do Guilherme." },
-          { title: "Perugia", cover: "assets/carol/thumb-perugia.png", badge: "Galeria completa pendente", description: "Capa disponível. Imagens adicionais e ficha do projeto a receber do Guilherme." },
-          { title: "Pavia", cover: "assets/carol/thumb-pavia.png", badge: "Galeria completa pendente", description: "Capa disponível. Imagens adicionais e ficha do projeto a receber do Guilherme." },
-          { title: "Modena", cover: "assets/carol/thumb-modena.png", badge: "Galeria completa pendente", description: "Capa disponível. Imagens adicionais e ficha do projeto a receber do Guilherme." },
-          { title: "Renoir", group: "Renoir", description: "Estudo de fachada residencial com diferentes perspectivas do edifício e da área de lazer." },
-          { title: "Montalcino", group: "Montalcino", description: "Edifício residencial apresentado em diferentes perspectivas da fachada e do acesso." },
-          { title: "Maranello", cover: "assets/carol/thumb-maranello.png", badge: "Galeria completa pendente", description: "Capa disponível. Imagens adicionais e ficha do projeto a receber do Guilherme." },
-          { title: "Bellagio", cover: "assets/carol/thumb-bellagio.png", badge: "Galeria completa pendente", description: "Capa disponível. Imagens adicionais e ficha do projeto a receber do Guilherme." },
-          { title: "Van Gogh", pending: true, description: "Projeto incluído na lista; imagens pendentes." }
+          { title: "Lucca", group: "Lucca", cover: "assets/carol/projeto-lucca.png", gallerySlug: "lucca", galleryCount: 9, fullImage: true, description: "Edifício residencial com fachada contemporânea, varandas e elementos verticais de destaque." },
+          { title: "Vernazza", group: "Vernazza", cover: "assets/carol/thumb-vernazza.png", gallerySlug: "vernazza", galleryCount: 11, fullImage: true, description: "Edifício residencial com grandes varandas e composição de volumes em tons quentes." },
+          { title: "Treviso", group: "Treviso", cover: "assets/carol/thumb-treviso.png", gallerySlug: "treviso", galleryCount: 4, fullImage: true, description: "Edifício residencial com fachada leve, tons neutros e varandas distribuídas ao longo dos pavimentos." },
+          { title: "Perugia", group: "Perugia", cover: "assets/carol/thumb-perugia.png", gallerySlug: "perugia", galleryCount: 4, fullImage: true, description: "Edifício residencial com varandas contínuas e composição contemporânea de linhas horizontais." },
+          { title: "Pavia", group: "Pavia", cover: "assets/carol/thumb-pavia.png", gallerySlug: "pavia", galleryCount: 6, fullImage: true, description: "Edifício residencial com volumes marcados, elementos vazados e varandas integradas à fachada." },
+          { title: "Modena", group: "Modena", cover: "assets/carol/thumb-modena.png", gallerySlug: "modena", galleryCount: 4, fullImage: true, description: "Edifício residencial com varandas, volumes leves e acabamentos em tons suaves." },
+          { title: "Renoir", group: "Renoir", gallerySlug: "renoir-extra", galleryCount: 8, fullImage: true, description: "Estudo de fachada residencial com diferentes perspectivas do edifício e da área de lazer." },
+          { title: "Montalcino", group: "Montalcino", gallerySlug: "montalcino-extra", galleryCount: 1, fullImage: true, description: "Edifício residencial apresentado em diferentes perspectivas da fachada e do acesso." },
+          { title: "Maranello", group: "Maranello", cover: "assets/carol/thumb-maranello.png", gallerySlug: "maranello", galleryCount: 4, fullImage: true, description: "Edifício residencial com sacadas marcadas, brises e identidade visual bem definida." },
+          { title: "Bellagio", group: "Bellagio", cover: "assets/carol/thumb-bellagio.png", gallerySlug: "bellagio", galleryCount: 9, fullImage: true, description: "Edifício residencial com varandas amplas e composição contemporânea de fachada." },
+          { title: "Van Gogh", pending: true, hidden: true, description: "Projeto incluído na lista; imagens pendentes." }
         ]
       },
       {
@@ -187,13 +187,13 @@
           { title: "811", group: "Comercial 811", description: "Escritório corporativo com recepção, áreas de trabalho e ambientes de reunião." },
           { title: "Dra. Nara", group: "Clínica Dra. Nara Andreetta", description: "Espaços de atendimento, recepção e apoio planejados para a rotina clínica." },
           { title: "Advocacia", group: "Oliveira e Souza Advocacia", description: "Recepção e salas de atendimento e trabalho do escritório." },
-          { title: "Serimbura", group: "Recanto Serimbura", description: "Espaço de convivência com salão, varanda e áreas ajardinadas." },
-          { title: "Souza&Souza", pending: true, description: "Projeto incluído na lista; imagens pendentes." }
+          { title: "Serimbura", group: "Recanto Serimbura", gallerySlug: "recanto-serimbura", galleryCount: 17, fullImage: true, description: "Espaço de convivência com salão, varanda e áreas ajardinadas." },
+          { title: "Souza&Souza", pending: true, hidden: true, description: "Projeto incluído na lista; imagens pendentes." }
         ]
       },
       {
         id: "interiores", title: "Interiores", projects: [
-          { title: "Solar dos Pinheiros", sourceTitle: "SOLAR DOS PINHEIROS", description: "Descrição do projeto pendente." },
+          { title: "Solar dos Pinheiros", group: "Solar dos Pinheiros", gallerySlug: "solar-dos-pinheiros", galleryCount: 17, fullImage: true, description: "Interiores residenciais com ambientes integrados, cores marcantes e soluções de mobiliário." },
           { title: "Neo", group: "Edifício Neo", description: "Requalificação e modernização do apartamento, com integração dos ambientes." },
           { title: "PJ", group: "Projeto PJ", description: "Reforma residencial com cozinha integrada à área social, marcenaria e renovação de acabamentos." },
           { title: "FF", group: "Projeto FF", description: "Ambientes integrados, com cozinha, sala e suítes." },
@@ -240,6 +240,65 @@
       renderLightbox();
     }
 
+    function addProjectGalleryImages(project) {
+      if (!project.gallerySlug || !project.galleryCount) return;
+      var album = Array.prototype.slice.call(document.querySelectorAll("[data-album]")).find(function (item) {
+        return item.getAttribute("data-album") === project.group;
+      });
+      if (!album) {
+        album = document.createElement("article");
+        album.className = "album";
+        album.setAttribute("data-album", project.group);
+        album.setAttribute("aria-label", "Galeria de " + project.title);
+        var albumGrid = document.createElement("div");
+        albumGrid.className = "album__grid";
+        album.appendChild(albumGrid);
+        var albumList = document.querySelector(".album-list__inner") || document.querySelector(".album-list");
+        if (albumList) albumList.appendChild(album);
+      }
+      var grid = album.querySelector(".album__grid") || album;
+      if (project.cover) {
+        var coverButton = document.createElement("button");
+        coverButton.className = "album__item album__item--featured";
+        coverButton.type = "button";
+        coverButton.setAttribute("data-album-item", "");
+        coverButton.setAttribute("data-src", project.cover);
+        coverButton.setAttribute("data-title", project.title + " — Capa");
+        var coverImage = document.createElement("img");
+        coverImage.src = project.cover;
+        coverImage.alt = project.title + " — Imagem de capa";
+        coverImage.loading = "lazy";
+        coverImage.decoding = "async";
+        var coverLabel = document.createElement("span");
+        coverLabel.textContent = "CAPA";
+        coverButton.append(coverImage, coverLabel);
+        grid.insertBefore(coverButton, grid.firstChild);
+      }
+      for (var index = 1; index <= project.galleryCount; index += 1) {
+        var button = document.createElement("button");
+        button.className = "album__item" + (!grid.querySelector("[data-album-item]") ? " album__item--featured" : "");
+        button.type = "button";
+        button.setAttribute("data-album-item", "");
+        var imagePath = "assets/carol/gallery/" + project.gallerySlug + "/" + String(index).padStart(2, "0") + ".webp";
+        var imageTitle = project.title + " — Foto " + String(index).padStart(2, "0");
+        button.setAttribute("data-src", imagePath);
+        button.setAttribute("data-title", imageTitle);
+        var image = document.createElement("img");
+        image.src = imagePath;
+        image.alt = imageTitle;
+        image.loading = "lazy";
+        image.decoding = "async";
+        var label = document.createElement("span");
+        label.textContent = "FOTO " + String(index).padStart(2, "0");
+        button.append(image, label);
+        grid.appendChild(button);
+      }
+    }
+
+    projectGroups.forEach(function (group) {
+      group.projects.forEach(addProjectGalleryImages);
+    });
+
     projectGroups.forEach(function (group) {
       var section = document.createElement("section");
       section.className = "project-category";
@@ -251,8 +310,9 @@
       var grid = document.createElement("div");
       grid.className = "projects-grid";
       group.projects.forEach(function (project) {
+        if (project.hidden) return;
         var card = document.createElement(project.pending ? "article" : "button");
-        card.className = "project-card" + (project.pending ? " project-card--pending" : "");
+        card.className = "project-card" + (project.pending ? " project-card--pending" : "") + (project.fullImage ? " project-card--full-image" : "");
         if (!project.pending) {
           card.type = "button";
           card.setAttribute("aria-label", "Abrir galeria do projeto " + project.title);
