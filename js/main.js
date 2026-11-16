@@ -16,6 +16,40 @@
     });
   }
 
+  var instagramPlayer = document.getElementById("instagramPlayer");
+  var instagramPlayerFrame = document.getElementById("instagramPlayerFrame");
+  var instagramPlayerTitle = document.getElementById("instagramPlayerTitle");
+  var instagramPlayerTrigger = null;
+
+  document.addEventListener("click", function (event) {
+    var preview = event.target.closest("[data-instagram-embed]");
+    if (!preview || !instagramPlayer || !instagramPlayerFrame) return;
+    var card = preview.closest(".media-card");
+    var shortcode = preview.getAttribute("data-instagram-embed");
+    if (!card || !shortcode) return;
+    var title = (card.querySelector("h2, h3") || {}).textContent || "Vídeo do Instagram";
+    instagramPlayerTrigger = preview;
+    instagramPlayerTitle.textContent = title;
+    instagramPlayerFrame.title = "Vídeo do Instagram: " + title;
+    instagramPlayerFrame.src = "https://www.instagram.com/p/" + encodeURIComponent(shortcode) + "/embed?autoplay=1";
+    instagramPlayer.showModal();
+    document.body.style.overflow = "hidden";
+  });
+
+  if (instagramPlayer) {
+    instagramPlayer.querySelector("[data-instagram-close]").addEventListener("click", function () {
+      instagramPlayer.close();
+    });
+    instagramPlayer.addEventListener("click", function (event) {
+      if (event.target === instagramPlayer) instagramPlayer.close();
+    });
+    instagramPlayer.addEventListener("close", function () {
+      instagramPlayerFrame.src = "about:blank";
+      document.body.style.overflow = "";
+      if (instagramPlayerTrigger) instagramPlayerTrigger.focus();
+    });
+  }
+
   var magazineReader = document.getElementById("magazineReader");
   var magazinePdfFrame = document.getElementById("magazinePdfFrame");
   var magazineReaderTitle = document.getElementById("magazineReaderTitle");
@@ -65,6 +99,8 @@
 
   var lightbox = document.getElementById("albumLightbox");
   var lightboxImage = document.getElementById("lightboxImage");
+  var lightboxPlanFrame = document.getElementById("lightboxPlanFrame");
+  var lightboxPlanImage = document.getElementById("lightboxPlanImage");
   var lightboxAlbum = document.getElementById("lightboxAlbum");
   var lightboxTitle = document.getElementById("lightboxTitle");
   var lightboxCount = document.getElementById("lightboxCount");
@@ -73,31 +109,54 @@
   var nextBtn = document.querySelector("[data-lightbox-next]");
   var activeAlbum = [];
   var activeIndex = 0;
+  // Source dimensions and visible rectangles; the original architectural images remain untouched.
+  var planCropSpecs = {
+    "treviso-03": [4955, 6720, 1050, 1320, 4400, 6120],
+    "treviso-04": [4955, 6720, 1160, 1320, 4160, 6080],
+    "perugia-02": [3374, 6200, 0, 0, 3374, 5620],
+    "perugia-03": [3976, 6680, 200, 120, 3950, 5900],
+    "pavia-04": [6860, 7320, 550, 0, 6350, 7185],
+    "modena-02": [2635, 3480, 20, 20, 2615, 3350],
+    "modena-03": [2198, 3320, 100, 220, 2100, 2810],
+    "modena-04": [2198, 3320, 140, 180, 2070, 2810],
+    "maranello-02": [5784, 7240, 1120, 1000, 4770, 6700],
+    "maranello-03": [5722, 7240, 1150, 1000, 4800, 6700],
+    "maranello-04": [5785, 8259, 500, 350, 5300, 7440],
+    "bellagio-02": [4909, 5280, 100, 150, 4850, 4480],
+    "bellagio-08": [9160, 5612, 250, 150, 8650, 5160],
+    "bellagio-09": [4638, 6560, 700, 130, 4160, 5800],
+    "bellagio-10": [1600, 1439, 100, 120, 1540, 1350]
+  };
 
-  document.querySelectorAll(".album__grid").forEach(function (grid) {
-    var items = Array.prototype.slice.call(grid.querySelectorAll("[data-album-item]"));
-    var gridItems = items.slice(1);
-    var extraCount = gridItems.length - 4;
 
-    if (extraCount > 0) {
-      var more = document.createElement("span");
-      more.className = "album__more";
-      more.textContent = "+" + extraCount;
-      gridItems[3].classList.add("album__item--more");
-      gridItems[3].appendChild(more);
-      gridItems.slice(4).forEach(function (item) {
-        item.classList.add("album__item--hidden");
-      });
-    }
-  });
 
   function renderLightbox() {
     if (!lightbox || !activeAlbum.length) return;
     var item = activeAlbum[activeIndex];
-    lightboxImage.src = item.src;
-    lightboxImage.alt = item.title;
+    lightboxImage.closest(".lightbox__figure").setAttribute("data-logo-mask", item.logoMask || "");
+    var hasPlanCrop = !!item.planCrop;
+    lightboxImage.hidden = hasPlanCrop;
+    lightboxPlanFrame.hidden = !hasPlanCrop;
+    if (hasPlanCrop) {
+      lightboxPlanFrame.setAttribute("data-crop-key", item.planCrop);
+      var crop = planCropSpecs[item.planCrop];
+      if (crop) {
+        var cropWidth = crop[4] - crop[2];
+        var cropHeight = crop[5] - crop[3];
+        lightboxPlanFrame.style.aspectRatio = cropWidth + " / " + cropHeight;
+        lightboxPlanFrame.style.width = "min(84vw, " + Math.min(80, 74 * cropWidth / cropHeight).toFixed(2) + "vh)";
+        lightboxPlanImage.style.width = (100 * crop[0] / cropWidth).toFixed(3) + "%";
+        lightboxPlanImage.style.left = (-100 * crop[2] / cropWidth).toFixed(3) + "%";
+        lightboxPlanImage.style.top = (-100 * crop[3] / cropHeight).toFixed(3) + "%";
+      }
+      lightboxPlanImage.src = item.src;
+      lightboxPlanImage.alt = item.title;
+    } else {
+      lightboxImage.src = item.src;
+      lightboxImage.alt = item.title;
+    }
     lightboxAlbum.textContent = item.album;
-    lightboxTitle.textContent = item.title;
+    lightboxTitle.textContent = item.caption || "";
     lightboxCount.textContent = (activeIndex + 1) + " / " + activeAlbum.length;
   }
 
@@ -110,10 +169,13 @@
       return {
         album: albumName,
         src: albumButton.getAttribute("data-src"),
-        title: albumButton.getAttribute("data-title") || albumName
+        title: albumButton.getAttribute("data-title") || albumName,
+        caption: albumButton.getAttribute("data-caption") || "",
+        planCrop: albumButton.getAttribute("data-plan-crop") || "",
+        logoMask: albumButton.getAttribute("data-logo-mask") || ""
       };
     });
-    activeIndex = button.classList.contains("album__item--more") ? Math.min(5, buttons.length - 1) : buttons.indexOf(button);
+    activeIndex = button.classList.contains("album__item--more") ? Math.min(4, buttons.length - 1) : buttons.indexOf(button);
     lightbox.classList.add("is-open");
     lightbox.setAttribute("aria-hidden", "false");
     document.body.style.overflow = "hidden";
@@ -133,8 +195,16 @@
     renderLightbox();
   }
 
-  document.querySelectorAll("[data-album-item]").forEach(function (button) {
-    button.addEventListener("click", function () { openLightbox(button); });
+  document.addEventListener("click", function (event) {
+    var photo = event.target.closest("[data-album-item]");
+    if (photo) openLightbox(photo);
+  });
+
+  document.addEventListener("click", function (event) {
+    var cover = event.target.closest("[data-album-cover]");
+    if (!cover) return;
+    var firstPhoto = cover.closest("[data-album]").querySelector("[data-album-item]");
+    if (firstPhoto) openLightbox(firstPhoto);
   });
 
   document.querySelectorAll("[data-showcase-gallery]").forEach(function (button) {
@@ -169,16 +239,16 @@
     var projectGroups = [
       {
         id: "edificios", title: "Edifícios", projects: [
-          { title: "Lucca", group: "Lucca", cover: "assets/carol/projeto-lucca.png", gallerySlug: "lucca", galleryCount: 9, fullImage: true, description: "Edifício residencial com fachada contemporânea, varandas e elementos verticais de destaque." },
-          { title: "Vernazza", group: "Vernazza", cover: "assets/carol/thumb-vernazza.png", gallerySlug: "vernazza", galleryCount: 11, fullImage: true, description: "Edifício residencial com grandes varandas e composição de volumes em tons quentes." },
-          { title: "Treviso", group: "Treviso", cover: "assets/carol/thumb-treviso.png", gallerySlug: "treviso", galleryCount: 4, fullImage: true, description: "Edifício residencial com fachada leve, tons neutros e varandas distribuídas ao longo dos pavimentos." },
-          { title: "Perugia", group: "Perugia", cover: "assets/carol/thumb-perugia.png", gallerySlug: "perugia", galleryCount: 4, fullImage: true, description: "Edifício residencial com varandas contínuas e composição contemporânea de linhas horizontais." },
-          { title: "Pavia", group: "Pavia", cover: "assets/carol/thumb-pavia.png", gallerySlug: "pavia", galleryCount: 6, fullImage: true, description: "Edifício residencial com volumes marcados, elementos vazados e varandas integradas à fachada." },
-          { title: "Modena", group: "Modena", cover: "assets/carol/thumb-modena.png", gallerySlug: "modena", galleryCount: 4, fullImage: true, description: "Edifício residencial com varandas, volumes leves e acabamentos em tons suaves." },
-          { title: "Renoir", group: "Renoir", gallerySlug: "renoir-extra", galleryCount: 8, fullImage: true, description: "Estudo de fachada residencial com diferentes perspectivas do edifício e da área de lazer." },
+          { title: "Lucca", group: "Lucca", cover: "assets/carol/gallery/covers/edif-cios.webp", gallerySlug: "lucca", galleryCount: 9, galleryOrder: ["cover", 2, 1, 4, 5, 6, 7, 8, 9], galleryCaptions: { cover: "Capa" }, fullImage: true, description: "Edifício residencial com fachada contemporânea, varandas e elementos verticais de destaque." },
+          { title: "Vernazza", group: "Vernazza", cover: "assets/carol/gallery/covers/vernazza.webp", gallerySlug: "vernazza", galleryCount: 7, galleryOrder: [3, 5, 7, 8, 9, 10, 11], fullImage: true, description: "Edifício residencial com grandes varandas e composição de volumes em tons quentes." },
+          { title: "Treviso", group: "Treviso", cover: "assets/carol/thumb-treviso.png", gallerySlug: "treviso", galleryCount: 4, galleryOrder: [1, 4, 3, 2], galleryCaptions: { 3: "Pavimento cobertura - lazer", 4: "Pavimento tipo" }, galleryCrops: { 3: "treviso-03", 4: "treviso-04" }, fullImage: true, description: "Edifício residencial com fachada leve, tons neutros e varandas distribuídas ao longo dos pavimentos." },
+          { title: "Perugia", group: "Perugia", cover: "assets/carol/thumb-perugia.png", gallerySlug: "perugia", galleryCount: 4, galleryOrder: [4, 2, 3, 1], galleryCaptions: { 1: "Implantação", 2: "Pavimento tipo", 3: "Pavimento cobertura" }, galleryCrops: { 2: "perugia-02", 3: "perugia-03" }, fullImage: true, description: "Edifício residencial com varandas contínuas e composição contemporânea de linhas horizontais." },
+          { title: "Pavia", group: "Pavia", cover: "assets/carol/thumb-pavia.png", gallerySlug: "pavia", galleryCount: 6, galleryOrder: [1, 2, 3, 6, 5, 4], galleryCaptions: { 4: "Implantação", 5: "Pavimento cobertura", 6: "Pavimento tipo" }, galleryCrops: { 4: "pavia-04" }, fullImage: true, description: "Edifício residencial com volumes marcados, elementos vazados e varandas integradas à fachada." },
+          { title: "Modena", group: "Modena", cover: "assets/carol/thumb-modena.png", gallerySlug: "modena", galleryCount: 4, galleryOrder: [1, 4, 3, 2], galleryCaptions: { 2: "Implantação", 3: "Pavimento cobertura", 4: "Pavimento tipo" }, galleryCrops: { 2: "modena-02", 3: "modena-03", 4: "modena-04" }, fullImage: true, description: "Edifício residencial com varandas, volumes leves e acabamentos em tons suaves." },
+          { title: "Renoir", group: "Renoir", fullImage: true, description: "Estudo de fachada residencial com diferentes perspectivas do edifício e da área de lazer." },
           { title: "Montalcino", group: "Montalcino", gallerySlug: "montalcino-extra", galleryCount: 1, fullImage: true, description: "Edifício residencial apresentado em diferentes perspectivas da fachada e do acesso." },
-          { title: "Maranello", group: "Maranello", cover: "assets/carol/thumb-maranello.png", gallerySlug: "maranello", galleryCount: 4, fullImage: true, description: "Edifício residencial com sacadas marcadas, brises e identidade visual bem definida." },
-          { title: "Bellagio", group: "Bellagio", cover: "assets/carol/thumb-bellagio.png", gallerySlug: "bellagio", galleryCount: 9, fullImage: true, description: "Edifício residencial com varandas amplas e composição contemporânea de fachada." },
+          { title: "Maranello", group: "Maranello", cover: "assets/carol/thumb-maranello.png", gallerySlug: "maranello", galleryCount: 4, galleryOrder: [1, 3, 2, 4], galleryCaptions: { 2: "Pavimento cobertura", 3: "Pavimento tipo", 4: "Implantação" }, galleryCrops: { 2: "maranello-02", 3: "maranello-03", 4: "maranello-04" }, fullImage: true, description: "Edifício residencial com sacadas marcadas, brises e identidade visual bem definida." },
+          { title: "Bellagio", group: "Bellagio", cover: "assets/carol/thumb-bellagio.png", gallerySlug: "bellagio", galleryCount: 10, galleryOrder: [3, 4, 5, 6, 7, 10, 9, 1, 2, 8], galleryCaptions: { 1: "Pavimento cobertura", 2: "Pavimento cobertura", 8: "Implantação", 9: "Pavimento tipo", 10: "Pavimento tipo" }, galleryCrops: { 2: "bellagio-02", 8: "bellagio-08", 9: "bellagio-09", 10: "bellagio-10" }, fullImage: true, description: "Edifício residencial com varandas amplas e composição contemporânea de fachada." },
           { title: "Van Gogh", pending: true, hidden: true, description: "Projeto incluído na lista; imagens pendentes." }
         ]
       },
@@ -187,15 +257,14 @@
           { title: "811", group: "Comercial 811", description: "Escritório corporativo com recepção, áreas de trabalho e ambientes de reunião." },
           { title: "Dra. Nara", group: "Clínica Dra. Nara Andreetta", description: "Espaços de atendimento, recepção e apoio planejados para a rotina clínica." },
           { title: "Advocacia", group: "Oliveira e Souza Advocacia", description: "Recepção e salas de atendimento e trabalho do escritório." },
-          { title: "Serimbura", group: "Recanto Serimbura", gallerySlug: "recanto-serimbura", galleryCount: 17, fullImage: true, description: "Espaço de convivência com salão, varanda e áreas ajardinadas." },
-          { title: "Souza & Souza", group: "Souza & Souza", cover: "assets/carol/gallery/souza-e-souza/capa.webp", gallerySlug: "souza-e-souza", galleryCount: 8, description: "Escritório corporativo com recepção, estações de trabalho e sala de reunião." }
+          { title: "Serimbura", group: "Recanto Serimbura Residencial", cover: "assets/carol/gallery/covers/recanto-serimbura.webp", gallerySlug: "recanto-serimbura", galleryCount: 13, galleryOrder: [3, 4, 5, 6, 8, 9, 10, 11, 13, 14, 15, 16, 17], fullImage: true, description: "Residência com áreas externas integradas ao paisagismo." }
         ]
       },
       {
         id: "interiores", title: "Interiores", projects: [
-          { title: "Solar dos Pinheiros", group: "Solar dos Pinheiros", gallerySlug: "solar-dos-pinheiros", galleryCount: 17, fullImage: true, description: "Interiores residenciais com ambientes integrados, cores marcantes e soluções de mobiliário." },
+          { title: "Solar dos Pinheiros", group: "Solar dos Pinheiros", cover: "assets/carol/gallery/covers/solar-dos-pinheiros.webp", gallerySlug: "solar-dos-pinheiros", galleryCount: 16, galleryOrder: [16, 17, 14, 15, 1, 2, 3, 4, 5, 9, 10, 6, 7, 8, 11, 12], fullImage: true, description: "Interiores residenciais com ambientes integrados, cores marcantes e soluções de mobiliário." },
           { title: "Neo", group: "Edifício Neo", description: "Requalificação e modernização do apartamento, com integração dos ambientes." },
-          { title: "PJ", group: "Projeto PJ", description: "Reforma residencial com cozinha integrada à área social, marcenaria e renovação de acabamentos." },
+          { title: "PJ", group: "Projeto PJ", cover: "assets/carol/gallery/covers/projeto-pj.webp", description: "Reforma residencial com cozinha integrada à área social, marcenaria e renovação de acabamentos." },
           { title: "FF", group: "Projeto FF", description: "Ambientes integrados, com cozinha, sala e suítes." },
           { title: "Quarto adolescente", group: "Quarto do Filho", description: "Quarto com áreas de descanso, estudo e armazenamento." },
           { title: "Quintal", group: "Quintal", description: "Jardim e área externa com deck, paisagismo e espaços de convivência." },
@@ -228,7 +297,10 @@
         return {
           album: project.title,
           src: button.getAttribute("data-src"),
-          title: button.getAttribute("data-title") || project.title
+          title: button.getAttribute("data-title") || project.title,
+          caption: button.getAttribute("data-caption") || "",
+          planCrop: button.getAttribute("data-plan-crop") || "",
+          logoMask: button.getAttribute("data-logo-mask") || ""
         };
       });
       if (!activeAlbum.length && project.cover) activeAlbum = [{ album: project.title, src: project.cover, title: project.title }];
@@ -241,7 +313,7 @@
     }
 
     function addProjectGalleryImages(project) {
-      if (!project.gallerySlug || !project.galleryCount) return;
+      if (!project.gallerySlug || (!project.galleryCount && !project.galleryOrder)) return;
       var album = Array.prototype.slice.call(document.querySelectorAll("[data-album]")).find(function (item) {
         return item.getAttribute("data-album") === project.group;
       });
@@ -250,6 +322,10 @@
         album.className = "album";
         album.setAttribute("data-album", project.group);
         album.setAttribute("aria-label", "Galeria de " + project.title);
+        var albumHead = document.createElement("div");
+        albumHead.className = "album__head";
+        albumHead.innerHTML = '<div><p class="eyebrow">Projeto</p><h2>' + project.title + '</h2></div><p>' + (project.description || "Galeria do projeto.") + '</p>';
+        album.appendChild(albumHead);
         var albumGrid = document.createElement("div");
         albumGrid.className = "album__grid";
         album.appendChild(albumGrid);
@@ -261,42 +337,57 @@
         var coverButton = document.createElement("button");
         coverButton.className = "album__item album__item--featured";
         coverButton.type = "button";
-        coverButton.setAttribute("data-album-item", "");
-        coverButton.setAttribute("data-src", project.cover);
+        coverButton.setAttribute("data-album-cover", "");
+
         coverButton.setAttribute("data-title", project.title + " — Capa");
         var coverImage = document.createElement("img");
-        coverImage.src = project.cover;
+        coverImage.src = project.cover + (project.cover.indexOf("?") >= 0 ? "&" : "?") + "v=20261112-gallery-refresh";
         coverImage.alt = project.title + " — Imagem de capa";
         coverImage.loading = "lazy";
         coverImage.decoding = "async";
-        var coverLabel = document.createElement("span");
-        coverLabel.textContent = "CAPA";
-        coverButton.append(coverImage, coverLabel);
+        coverButton.append(coverImage);
         grid.insertBefore(coverButton, grid.firstChild);
       }
-      for (var index = 1; index <= project.galleryCount; index += 1) {
+      var photoOrder = project.galleryOrder || Array.from({ length: project.galleryCount || 0 }, function (_, index) { return index + 1; });
+      photoOrder.forEach(function (index) {
         var button = document.createElement("button");
         button.className = "album__item" + (!grid.querySelector("[data-album-item]") ? " album__item--featured" : "");
         button.type = "button";
         button.setAttribute("data-album-item", "");
-        var imagePath = "assets/carol/gallery/" + project.gallerySlug + "/" + String(index).padStart(2, "0") + ".webp";
-        var imageTitle = project.title + " — Foto " + String(index).padStart(2, "0");
+        var imagePath = index === "cover"
+          ? project.cover + (project.cover.indexOf("?") >= 0 ? "&" : "?") + "v=20261112-gallery-refresh"
+          : "assets/carol/gallery/" + project.gallerySlug + "/" + String(index).padStart(2, "0") + ".webp?v=20261112-gallery-refresh";
+        var imageTitle = project.title + (index === "cover" ? " — Capa" : " — Foto " + String(index).padStart(2, "0"));
         button.setAttribute("data-src", imagePath);
+        if (project.galleryCrops && project.galleryCrops[index]) button.setAttribute("data-plan-crop", project.galleryCrops[index]);
         button.setAttribute("data-title", imageTitle);
+        if (project.galleryCaptions && project.galleryCaptions[index]) button.setAttribute("data-caption", project.galleryCaptions[index]);
         var image = document.createElement("img");
         image.src = imagePath;
         image.alt = imageTitle;
         image.loading = "lazy";
         image.decoding = "async";
-        var label = document.createElement("span");
-        label.textContent = "FOTO " + String(index).padStart(2, "0");
-        button.append(image, label);
+        button.append(image);
         grid.appendChild(button);
-      }
+      });
     }
 
     projectGroups.forEach(function (group) {
       group.projects.forEach(addProjectGalleryImages);
+    });
+
+    document.querySelectorAll(".album__grid").forEach(function (grid) {
+      var items = Array.prototype.slice.call(grid.querySelectorAll("[data-album-item]"));
+      var gridItems = items;
+      var extraCount = gridItems.length - 4;
+      if (extraCount > 0) {
+        var more = document.createElement("span");
+        more.className = "album__more";
+        more.textContent = "+" + extraCount;
+        gridItems[3].classList.add("album__item--more");
+        gridItems[3].appendChild(more);
+        gridItems.slice(4).forEach(function (item) { item.classList.add("album__item--hidden"); });
+      }
     });
 
     projectGroups.forEach(function (group) {
@@ -328,7 +419,10 @@
           image.alt = "";
           image.loading = "lazy";
           image.decoding = "async";
-          media.appendChild(image);
+          var viewLabel = document.createElement("span");
+          viewLabel.className = "project-card__view";
+          viewLabel.textContent = "Ver";
+          media.append(image, viewLabel);
         } else {
           media.classList.add("project-card__media--empty");
           var pendingLabel = document.createElement("span");
@@ -421,7 +515,7 @@
         content: "<p>Projetos de interiores devem responder ao uso diário, à circulação, à iluminação e à personalidade de quem habita o espaço. Funcionalidade e beleza precisam caminhar juntas.</p>",
         labels: ["Interiores"],
         author: { displayName: "Carol Magno Arquitetura" },
-        image: { url: "assets/carol/projeto-interiores-riz.jpg" }
+        image: { url: "assets/carol/gallery/covers/interiores.webp" }
       },
       {
         kind: "blogger#post",
@@ -435,7 +529,7 @@
         content: "<p>Em edifícios multifamiliares, a implantação orienta conforto, eficiência e experiência dos moradores. O estudo do entorno é parte essencial do projeto.</p>",
         labels: ["Edifícios", "Desempenho"],
         author: { displayName: "Carol Magno Arquitetura" },
-        image: { url: "assets/carol/projeto-lucca.png" }
+        image: { url: "assets/carol/gallery/covers/edif-cios.webp" }
       },
       {
         kind: "blogger#post",
