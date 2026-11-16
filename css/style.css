@@ -153,6 +153,8 @@ html.js [data-reveal]{opacity:0;transform:translateY(22px);transition:opacity .6
 .lightbox__figure[data-logo-mask="montalcino-02"]::before,.lightbox__figure[data-logo-mask="montalcino-03"]::before{inset:0;width:100%;height:auto;aspect-ratio:1;background-size:100% 100%;mask-image:radial-gradient(ellipse 45% 22% at 0 0,#000 90%,transparent 100%)}
 .lightbox__plan-frame{box-sizing:content-box}
 .certification-logos img.certification-logos__life{border-radius:50%;height:auto;max-height:84px;max-width:84px;width:84px}
+.certification-logos img.certification-logos__edge{clip-path:inset(18% 0 0 0)}
+.certification-logos img.certification-logos__casa{clip-path:ellipse(47% 50% at 49% 50%)}
 @media(max-width:640px){.certification-logos img.certification-logos__life{height:64px;max-height:64px;max-width:64px;width:64px}}
 
 /* Compact Reel cards open a separate floating player. */
